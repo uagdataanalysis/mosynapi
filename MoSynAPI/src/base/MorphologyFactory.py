@@ -19,7 +19,7 @@ class MorphologyFactory(object):
         
         
     @staticmethod
-    def createMorphology(self, forma, lema, label_ ):
+    def createMorphology( forma, lema, label_ ):
         """
         Use this method to create the specific Morphology objects; e.g.:
             MorphologyFactory.createMorphology( "SPCMS" )

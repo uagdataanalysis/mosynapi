@@ -13,6 +13,8 @@ class PreposicionMorphology(AbstractMorphology):
     '''
     '' Private "constants":
     '''
+    __IDX_CATEGORIA  = 0    # Char position for preposition "Categoria". 
+    __IDX_TIPO       = 1    # Char position for preposition "Tipo". 
     __IDX_FORMA      = 2    # Char position for preposition "Forma". 
     __IDX_GENDER     = 3    # Char position for preposition "Genero". 
     __IDX_NUMBER     = 4    # Char position for preposition "Numbero". 
@@ -37,7 +39,10 @@ class PreposicionMorphology(AbstractMorphology):
         ' If the category cannot be determined then CAT_UNKNOWN is returned.
         ' return Integer
         """
-        return self.CAT_ADPOSICION
+        if self.getEaglesLabel()[ self.__IDX_CATEGORIA ] == 'S':
+            return self.CAT_ADPOSICION
+        else:
+            return self.CAT_UNKNOWN
     #--------------------------------------------------------------------------
     
     
@@ -52,7 +57,10 @@ class PreposicionMorphology(AbstractMorphology):
         ' If the category cannot be determined then TYPE_UNKNOWN is returned.
         ' return Integer
         """
-        return self.TYPE_PREPOSICION
+        if self.getEaglesLabel()[ self.__IDX_TIPO ] == 'P':
+            return self.TYPE_PREPOSICION
+        else:
+            return self.TYPE_UKNOWN
     #--------------------------------------------------------------------------
     
     
@@ -67,12 +75,12 @@ class PreposicionMorphology(AbstractMorphology):
         ' If the category cannot be determined then FORMA_UNKNOWN is returned.
         ' return Integer
         """
-        if self.__label[ self.__IDX_FORMA ] == 'S':
+        if self.getEaglesLabel()[ self.__IDX_FORMA ] == 'S':
             return self.FORMA_SIMPLE
-        elif self.__label[ self.__IDX_FORMA ] == 'C':
+        elif self.getEaglesLabel()[ self.__IDX_FORMA ] == 'C':
             return self.FORMA_CONTRAIDA
         else:
-            return self.FORMA_UNKNOWN
+            return self.FORMA_UKNOWN
     #--------------------------------------------------------------------------
     
     
@@ -87,7 +95,7 @@ class PreposicionMorphology(AbstractMorphology):
         ' If the category cannot be determined then GENDER_UNKNOWN is returned.
         ' return Integer
         """
-        if self.__label[ self.__IDX_GENDER ] == 'M':
+        if self.getEaglesLabel()[ self.__IDX_GENDER ] == 'M':
             return self.GENDER_MASCULINO
         else:
             return self.GENDER_UKNOWN
@@ -105,7 +113,7 @@ class PreposicionMorphology(AbstractMorphology):
         ' If the category cannot be determined then NUMBER_UNKNOWN is returned.
         ' return Integer
         """
-        if self.__label[ self.__IDX_NUMBER ] == 'S':
+        if self.getEaglesLabel()[ self.__IDX_NUMBER ] == 'S':
             return self.NUMBER_SINGULAR
         else:
             return self.NUMBER_UKNOWN
