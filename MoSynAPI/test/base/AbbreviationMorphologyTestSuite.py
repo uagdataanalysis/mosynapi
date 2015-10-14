@@ -68,7 +68,7 @@ class Test(unittest.TestCase):
     def testFormaInvalid(self):
         """ Test an invalid Eagles label"""
         abbreviation = AbbreviationMorphology("forma", "lema", "Y0000" )
-        result = abbreviation.get_forma()
+        result = abbreviation.get_label_form()
         
         self.assertEqual( 
                          AbstractMorphology.FORM_UNKNOWN, 

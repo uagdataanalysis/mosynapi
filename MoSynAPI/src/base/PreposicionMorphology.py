@@ -63,7 +63,7 @@ class PreposicionMorphology(AbstractMorphology):
     
     
     
-    def get_forma(self):
+    def get_label_form(self):
         """
         ' Returns the Form of the word based on the Eagles label; e.g.:
         '    Eagles Label: SPCMS

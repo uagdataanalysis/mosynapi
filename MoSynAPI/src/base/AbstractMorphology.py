@@ -219,13 +219,13 @@ class AbstractMorphology(object):
     
     
     
-    def get_forma(self):
+    def get_label_form(self):
         """
         ' Returns the Form of the word based on the Eagles label; e.g.:
         '    Eagles Label: SPCMS
         '    Category:     FORMA_CONTRAIDA
         '
-        ' If the category cannot be determined then FORMA_UNKNOWN is returned.
+        ' If the category cannot be determined then FORM_UNKNOWN is returned.
         ' return Integer
         """
         return self.FORM_UNKNOWN

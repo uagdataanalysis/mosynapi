@@ -80,7 +80,7 @@ class Test(unittest.TestCase):
     def testFormaContraida(self):
         """ Test a valid Eagles label"""
         preposicion = PreposicionMorphology("forma", "lema", "SPCMS" )
-        result = preposicion.get_forma()
+        result = preposicion.get_label_form()
         
         self.assertEqual( 
                          AbstractMorphology.FORM_CONTRACTED, 
@@ -93,7 +93,7 @@ class Test(unittest.TestCase):
     def testFormaSimple(self):
         """ Test a valid Eagles label"""
         preposicion = PreposicionMorphology("forma", "lema", "SPSMS" )
-        result = preposicion.get_forma()
+        result = preposicion.get_label_form()
         
         self.assertEqual( 
                          AbstractMorphology.FORM_SIMPLE, 
@@ -106,7 +106,7 @@ class Test(unittest.TestCase):
     def testFormaInvalid(self):
         """ Test an invalid Eagles label"""
         preposicion = PreposicionMorphology("forma", "lema", "SPxMS" )
-        result = preposicion.get_forma()
+        result = preposicion.get_label_form()
         
         self.assertEqual( 
                          AbstractMorphology.FORM_UNKNOWN, 
