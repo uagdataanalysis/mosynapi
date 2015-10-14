@@ -11,21 +11,21 @@ class AbstractMorphology(object):
     '''
     '' Public "constants" for Eagles label Category:
     '''
-    __CAT_INIT        = 0
-    CAT_UNKNOWN       = __CAT_INIT + 1
-    CAT_ADJETIVO      = __CAT_INIT + 2
-    CAT_ADVERBIO      = __CAT_INIT + 3
-    CAT_ARTICULOS     = __CAT_INIT + 4
-    CAT_DETERMINANTES = __CAT_INIT + 5
-    CAT_NOMBRES       = __CAT_INIT + 6
-    CAT_VERBOS        = __CAT_INIT + 7
-    CAT_PRONOMBRES    = __CAT_INIT + 8
-    CAT_CONJUNCIONES  = __CAT_INIT + 9
-    CAT_NUMERALES     = __CAT_INIT + 10
-    CAT_INTERJECCIONES= __CAT_INIT + 11
-    CAT_ABREVIATURAS  = __CAT_INIT + 12
-    CAT_ADPOSICION = __CAT_INIT + 13
-    CAT_PUNTUACION    = __CAT_INIT + 14
+    __CAT_INIT = 0
+    CAT_UNKNOWN = __CAT_INIT + 1
+    CAT_ADJECTIVE = __CAT_INIT + 2
+    CAT_ADVERB = __CAT_INIT + 3
+    CAT_ARTICLE = __CAT_INIT + 4
+    CAT_DETERMINANT = __CAT_INIT + 5
+    CAT_NAMES = __CAT_INIT + 6
+    CAT_VERBS = __CAT_INIT + 7
+    CAT_PRONOUNS = __CAT_INIT + 8
+    CAT_CONJUNCTIONS = __CAT_INIT + 9
+    CAT_NUMERALS = __CAT_INIT + 10
+    CAT_INTERJECTION = __CAT_INIT + 11
+    CAT_ABBREVIATIONS = __CAT_INIT + 12
+    CAT_ADPOSITION = __CAT_INIT + 13
+    CAT_PUNCTUATION = __CAT_INIT + 14
     #--------------------------------------------------------------------------
     
     '''
@@ -33,26 +33,26 @@ class AbstractMorphology(object):
     '''
     __TYPE_INIT = __CAT_INIT + 100
     TYPE_UKNOWN       = __TYPE_INIT + 1
-    TYPE_CALIFICATIVO = __TYPE_INIT + 2
-    TYPE_PREPOSICION  = __TYPE_INIT + 3
+    TYPE_CALIFICATIVO = __TYPE_INIT + 2 # Not sure if Calificativo<->Qualifying
+    TYPE_PREPOSITION  = __TYPE_INIT + 3
     #--------------------------------------------------------------------------
     
     '''
     '' Public "constants" for Eagles label Degree:
     '''
     __DEGREE_INIT = __TYPE_INIT + 100
-    DEGREE_UKNOWN      = __DEGREE_INIT + 1
-    DEGREE_APRECIATIVO = __DEGREE_INIT + 2
+    DEGREE_UKNOWN = __DEGREE_INIT + 1
+    DEGREE_APPRECIATIVE = __DEGREE_INIT + 2
     #--------------------------------------------------------------------------
     
     '''
     '' Public "constants" for Eagles label Gender:
     '''
-    __GENDER_INIT     = __DEGREE_INIT + 100
-    GENDER_UKNOWN     = __GENDER_INIT + 1
-    GENDER_MASCULINO  = __GENDER_INIT + 2
-    GENDER_FEMENINO   = __GENDER_INIT + 3
-    GENDER_COMUN      = __GENDER_INIT + 4
+    __GENDER_INIT = __DEGREE_INIT + 100
+    GENDER_UKNOWN = __GENDER_INIT + 1
+    GENDER_MALE = __GENDER_INIT + 2
+    GENDER_FEMALE = __GENDER_INIT + 3
+    GENDER_COMMON = __GENDER_INIT + 4
     #--------------------------------------------------------------------------
     
     '''
@@ -77,35 +77,35 @@ class AbstractMorphology(object):
     '''
     __FORMA_INIT     = __CASE_INIT + 100
     FORMA_UKNOWN     = __FORMA_INIT + 1
-    FORMA_SIMPLE     = __FORMA_INIT + 2
-    FORMA_CONTRAIDA  = __FORMA_INIT + 3
+    FORM_SIMPLE     = __FORMA_INIT + 2
+    FORM_CONTRACTED  = __FORMA_INIT + 3
     #--------------------------------------------------------------------------
     
 
 
-    def __init__(self, forma, lema, label):
+    def __init__(self, form, lema, label):
         '''
         Constructor
         '''
-        self.__forma = forma
+        self.__form = form
         self.__lema = lema
         self.__label = label
     #--------------------------------------------------------------------------
       
         
-    def getForm(self):
+    def get_form(self):
         """
         ' Returns the word being analyzed in its raw form; e.g.:
         '    alegres
         '
         'return String
         """
-        return self.__forma
+        return self.__form
     #--------------------------------------------------------------------------
     
     
     
-    def getLema(self):
+    def get_lema(self):
         """
         ' Returns the root of the word being analyzed; e.g.:
         '    alegre
@@ -117,7 +117,7 @@ class AbstractMorphology(object):
     
     
     
-    def getEaglesLabel(self):
+    def get_eagles_label(self):
         """
         ' Returns the Eagles label that corresponds to the word being analyzed; e.g.:
         '    AQ0CP00
@@ -129,11 +129,11 @@ class AbstractMorphology(object):
     
     
     
-    def getCategory(self):
+    def get_category(self):
         """
         ' Returns the category of the word based on the Eagles label; e.g.:
         '    Eagles Label: AQ0CP00
-        '    Category:     CAT_ADJETIVO
+        '    Category:     CAT_ADJECTIVE
         '
         ' If the category cannot be determined then CAT_UNKNOWN is returned.
         ' return Integer
@@ -144,7 +144,7 @@ class AbstractMorphology(object):
     
     
     
-    def getType(self):
+    def get_type(self):
         """
         ' Returns the type of the word based on the Eagles label; e.g.:
         '    Eagles Label: AQ0CP00
@@ -159,7 +159,7 @@ class AbstractMorphology(object):
     
     
     
-    def getDegree(self):
+    def get_degree(self):
         """
         ' Returns the Degree of the word based on the Eagles label; e.g.:
         '    Eagles Label: AQ0CP00
@@ -174,7 +174,7 @@ class AbstractMorphology(object):
     
     
     
-    def getGender(self):
+    def get_gender(self):
         """
         ' Returns the Gender of the word based on the Eagles label; e.g.:
         '    Eagles Label: AQ0CP00
@@ -189,7 +189,7 @@ class AbstractMorphology(object):
     
     
     
-    def getNumber(self):
+    def get_number(self):
         """
         ' Returns the Number of the word based on the Eagles label; e.g.:
         '    Eagles Label: AQ0CP00
@@ -204,7 +204,7 @@ class AbstractMorphology(object):
     
     
     
-    def getCase(self):
+    def get_case(self):
         """
         ' Returns the Case of the word based on the Eagles label; e.g.:
         '    Eagles Label: AQ0CP00
@@ -219,7 +219,7 @@ class AbstractMorphology(object):
     
     
     
-    def getForma(self):
+    def get_forma(self):
         """
         ' Returns the Form of the word based on the Eagles label; e.g.:
         '    Eagles Label: SPCMS

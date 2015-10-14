@@ -22,10 +22,10 @@ class Test(unittest.TestCase):
     def testCategory(self):
         """ Test a valid Eagles label"""
         preposicion = PreposicionMorphology("forma", "lema", "SPCMS" )
-        result = preposicion.getCategory()
+        result = preposicion.get_category()
         
         self.assertEqual( 
-                         AbstractMorphology.CAT_ADPOSICION, 
+                         AbstractMorphology.CAT_ADPOSITION, 
                          result, 
                          "CAT_ADPOSICION is expected but obtained: " + 
                              str(result) )
@@ -35,7 +35,7 @@ class Test(unittest.TestCase):
     def testCategoryInvalid(self):
         """ Test an invalid Eagles label"""
         preposicion = PreposicionMorphology("forma", "lema", "xPCMS" )
-        result = preposicion.getCategory()
+        result = preposicion.get_category()
         
         self.assertEqual( 
                          AbstractMorphology.CAT_UNKNOWN, 
@@ -49,10 +49,10 @@ class Test(unittest.TestCase):
     def testType(self):
         """ Test a valid Eagles label"""
         preposicion = PreposicionMorphology("forma", "lema", "SPCMS" )
-        result = preposicion.getType()
+        result = preposicion.get_type()
         
         self.assertEqual( 
-                         AbstractMorphology.TYPE_PREPOSICION, 
+                         AbstractMorphology.TYPE_PREPOSITION, 
                          result, 
                          "CAT_ADPOSICION is expected but obtained: " + 
                              str(result) )
@@ -62,7 +62,7 @@ class Test(unittest.TestCase):
     def testTypeInvalid(self):
         """ Test an invalid Eagles label"""
         preposicion = PreposicionMorphology("forma", "lema", "SxCMS" )
-        result = preposicion.getType()
+        result = preposicion.get_type()
         
         self.assertEqual( 
                          AbstractMorphology.TYPE_UKNOWN, 
@@ -76,10 +76,10 @@ class Test(unittest.TestCase):
     def testFormaContraida(self):
         """ Test a valid Eagles label"""
         preposicion = PreposicionMorphology("forma", "lema", "SPCMS" )
-        result = preposicion.getForma()
+        result = preposicion.get_forma()
         
         self.assertEqual( 
-                         AbstractMorphology.FORMA_CONTRAIDA, 
+                         AbstractMorphology.FORM_CONTRACTED, 
                          result, 
                          "CAT_ADPOSICION is expected but obtained: " + 
                              str(result) )
@@ -89,10 +89,10 @@ class Test(unittest.TestCase):
     def testFormaSimple(self):
         """ Test a valid Eagles label"""
         preposicion = PreposicionMorphology("forma", "lema", "SPSMS" )
-        result = preposicion.getForma()
+        result = preposicion.get_forma()
         
         self.assertEqual( 
-                         AbstractMorphology.FORMA_SIMPLE, 
+                         AbstractMorphology.FORM_SIMPLE, 
                          result, 
                          "CAT_ADPOSICION is expected but obtained: " + 
                              str(result) )
@@ -102,7 +102,7 @@ class Test(unittest.TestCase):
     def testFormaInvalid(self):
         """ Test an invalid Eagles label"""
         preposicion = PreposicionMorphology("forma", "lema", "SPxMS" )
-        result = preposicion.getForma()
+        result = preposicion.get_forma()
         
         self.assertEqual( 
                          AbstractMorphology.FORMA_UKNOWN, 
@@ -116,10 +116,10 @@ class Test(unittest.TestCase):
     def testGender(self):
         """ Test a valid Eagles label"""
         preposicion = PreposicionMorphology("forma", "lema", "SPCMS" )
-        result = preposicion.getGender()
+        result = preposicion.get_gender()
         
         self.assertEqual( 
-                         AbstractMorphology.GENDER_MASCULINO, 
+                         AbstractMorphology.GENDER_MALE, 
                          result, 
                          "CAT_ADPOSICION is expected but obtained: " + 
                              str(result) )
@@ -129,7 +129,7 @@ class Test(unittest.TestCase):
     def testGenderInvalid(self):
         """ Test an invalid Eagles Gender for Preposicion"""
         preposicion = PreposicionMorphology("forma", "lema", "SPCFS" )
-        result = preposicion.getGender()
+        result = preposicion.get_gender()
         
         self.assertEqual( 
                          AbstractMorphology.GENDER_UKNOWN, 
@@ -143,7 +143,7 @@ class Test(unittest.TestCase):
     def testNumber(self):
         """ Test a valid Eagles label"""
         preposicion = PreposicionMorphology("forma", "lema", "SPCMS" )
-        result = preposicion.getNumber()
+        result = preposicion.get_number()
         
         self.assertEqual( 
                          AbstractMorphology.NUMBER_SINGULAR, 
@@ -156,7 +156,7 @@ class Test(unittest.TestCase):
     def testNumberInvalid(self):
         """ Test an invalid Eagles Number for Preposicion"""
         preposicion = PreposicionMorphology("forma", "lema", "SPCFP" )
-        result = preposicion.getNumber()
+        result = preposicion.get_number()
         
         self.assertEqual( 
                          AbstractMorphology.NUMBER_UKNOWN, 

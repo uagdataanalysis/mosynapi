@@ -13,24 +13,24 @@ class PreposicionMorphology(AbstractMorphology):
     '''
     '' Private "constants":
     '''
-    __IDX_CATEGORIA  = 0    # Char position for preposition "Categoria". 
-    __IDX_TIPO       = 1    # Char position for preposition "Tipo". 
-    __IDX_FORMA      = 2    # Char position for preposition "Forma". 
-    __IDX_GENDER     = 3    # Char position for preposition "Genero". 
-    __IDX_NUMBER     = 4    # Char position for preposition "Numbero". 
+    __IDX_CATEGORY = 0  # Char position for preposition "Categoria". 
+    __IDX_TYPE = 1      # Char position for preposition "Tipo". 
+    __IDX_FORM = 2      # Char position for preposition "Forma". 
+    __IDX_GENDER = 3    # Char position for preposition "Genero". 
+    __IDX_NUMBER = 4    # Char position for preposition "Numbero". 
     #--------------------------------------------------------------------------
     
 
-    def __init__(self, forma, lema, label_):
+    def __init__(self, form, lema, label_):
         '''
         Constructor
         '''
-        super(PreposicionMorphology, self).__init__( forma, lema, label_)
+        super(PreposicionMorphology, self).__init__( form, lema, label_)
     #--------------------------------------------------------------------------
     
     
     
-    def getCategory(self):
+    def get_category(self):
         """
         ' Returns the category of the word based on the Eagles label; e.g.:
         '    Eagles Label: AQ0CP00
@@ -39,8 +39,8 @@ class PreposicionMorphology(AbstractMorphology):
         ' If the category cannot be determined then CAT_UNKNOWN is returned.
         ' return Integer
         """
-        if self.getEaglesLabel()[ self.__IDX_CATEGORIA ] == 'S':
-            return self.CAT_ADPOSICION
+        if self.get_eagles_label()[ self.__IDX_CATEGORY ] == 'S':
+            return self.CAT_ADPOSITION
         else:
             return self.CAT_UNKNOWN
     #--------------------------------------------------------------------------
@@ -48,7 +48,7 @@ class PreposicionMorphology(AbstractMorphology):
     
     
     
-    def getType(self):
+    def get_type(self):
         """
         ' Returns the type of the word based on the Eagles label; e.g.:
         '    Eagles Label: AQ0CP00
@@ -57,8 +57,8 @@ class PreposicionMorphology(AbstractMorphology):
         ' If the category cannot be determined then TYPE_UNKNOWN is returned.
         ' return Integer
         """
-        if self.getEaglesLabel()[ self.__IDX_TIPO ] == 'P':
-            return self.TYPE_PREPOSICION
+        if self.get_eagles_label()[ self.__IDX_TYPE ] == 'P':
+            return self.TYPE_PREPOSITION
         else:
             return self.TYPE_UKNOWN
     #--------------------------------------------------------------------------
@@ -66,19 +66,19 @@ class PreposicionMorphology(AbstractMorphology):
     
     
     
-    def getForma(self):
+    def get_forma(self):
         """
         ' Returns the Form of the word based on the Eagles label; e.g.:
         '    Eagles Label: SPCMS
-        '    Category:     FORMA_CONTRAIDA
+        '    Category:     FORM_CONTRACTED
         '
         ' If the category cannot be determined then FORMA_UNKNOWN is returned.
         ' return Integer
         """
-        if self.getEaglesLabel()[ self.__IDX_FORMA ] == 'S':
-            return self.FORMA_SIMPLE
-        elif self.getEaglesLabel()[ self.__IDX_FORMA ] == 'C':
-            return self.FORMA_CONTRAIDA
+        if self.get_eagles_label()[ self.__IDX_FORM ] == 'S':
+            return self.FORM_SIMPLE
+        elif self.get_eagles_label()[ self.__IDX_FORM ] == 'C':
+            return self.FORM_CONTRACTED
         else:
             return self.FORMA_UKNOWN
     #--------------------------------------------------------------------------
@@ -86,7 +86,7 @@ class PreposicionMorphology(AbstractMorphology):
     
     
     
-    def getGender(self):
+    def get_gender(self):
         """
         ' Returns the Gender of the word based on the Eagles label; e.g.:
         '    Eagles Label: AQ0CP00
@@ -95,8 +95,8 @@ class PreposicionMorphology(AbstractMorphology):
         ' If the category cannot be determined then GENDER_UNKNOWN is returned.
         ' return Integer
         """
-        if self.getEaglesLabel()[ self.__IDX_GENDER ] == 'M':
-            return self.GENDER_MASCULINO
+        if self.get_eagles_label()[ self.__IDX_GENDER ] == 'M':
+            return self.GENDER_MALE
         else:
             return self.GENDER_UKNOWN
     #--------------------------------------------------------------------------
@@ -104,7 +104,7 @@ class PreposicionMorphology(AbstractMorphology):
     
     
     
-    def getNumber(self):
+    def get_number(self):
         """
         ' Returns the Number of the word based on the Eagles label; e.g.:
         '    Eagles Label: AQ0CP00
@@ -113,7 +113,7 @@ class PreposicionMorphology(AbstractMorphology):
         ' If the category cannot be determined then NUMBER_UNKNOWN is returned.
         ' return Integer
         """
-        if self.getEaglesLabel()[ self.__IDX_NUMBER ] == 'S':
+        if self.get_eagles_label()[ self.__IDX_NUMBER ] == 'S':
             return self.NUMBER_SINGULAR
         else:
             return self.NUMBER_UKNOWN
