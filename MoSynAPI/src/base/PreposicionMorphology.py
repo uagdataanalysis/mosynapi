@@ -60,7 +60,7 @@ class PreposicionMorphology(AbstractMorphology):
         if self.get_eagles_label()[ self.__IDX_TYPE ] == 'P':
             return self.TYPE_PREPOSITION
         else:
-            return self.TYPE_UKNOWN
+            return self.TYPE_UNKNOWN
     #--------------------------------------------------------------------------
     
     
@@ -80,7 +80,7 @@ class PreposicionMorphology(AbstractMorphology):
         elif self.get_eagles_label()[ self.__IDX_FORM ] == 'C':
             return self.FORM_CONTRACTED
         else:
-            return self.FORM_UKNOWN
+            return self.FORM_UNKNOWN
     #--------------------------------------------------------------------------
     
     

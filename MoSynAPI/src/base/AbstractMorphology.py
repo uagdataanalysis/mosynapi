@@ -32,7 +32,7 @@ class AbstractMorphology(object):
     '' Public "constants" for Eagles label Type:
     '''
     __TYPE_INIT = __CAT_INIT + 100
-    TYPE_UKNOWN       = __TYPE_INIT + 1
+    TYPE_UNKNOWN = __TYPE_INIT + 1
     TYPE_CALIFICATIVO = __TYPE_INIT + 2 # Not sure if Calificativo<->Qualifying
     TYPE_PREPOSITION  = __TYPE_INIT + 3
     #--------------------------------------------------------------------------
@@ -75,10 +75,10 @@ class AbstractMorphology(object):
     '''
     '' Public "constants" for Eagles label Forma:
     '''
-    __FORMA_INIT     = __CASE_INIT + 100
-    FORM_UKNOWN     = __FORMA_INIT + 1
-    FORM_SIMPLE     = __FORMA_INIT + 2
-    FORM_CONTRACTED  = __FORMA_INIT + 3
+    __FORMA_INIT = __CASE_INIT + 100
+    FORM_UNKNOWN = __FORMA_INIT + 1
+    FORM_SIMPLE = __FORMA_INIT + 2
+    FORM_CONTRACTED = __FORMA_INIT + 3
     #--------------------------------------------------------------------------
     
 
@@ -228,7 +228,7 @@ class AbstractMorphology(object):
         ' If the category cannot be determined then FORMA_UNKNOWN is returned.
         ' return Integer
         """
-        return self.FORMA_UNKNOWN
+        return self.FORM_UNKNOWN
     #--------------------------------------------------------------------------
     
     '''

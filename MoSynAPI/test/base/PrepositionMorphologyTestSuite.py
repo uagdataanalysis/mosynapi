@@ -65,7 +65,7 @@ class Test(unittest.TestCase):
         result = preposicion.get_type()
         
         self.assertEqual( 
-                         AbstractMorphology.TYPE_UKNOWN, 
+                         AbstractMorphology.TYPE_UNKNOWN, 
                          result, 
                          "CAT_UNKNOWN is expected but obtained: " + 
                              str(result) )
@@ -105,7 +105,7 @@ class Test(unittest.TestCase):
         result = preposicion.get_forma()
         
         self.assertEqual( 
-                         AbstractMorphology.FORM_UKNOWN, 
+                         AbstractMorphology.FORM_UNKNOWN, 
                          result, 
                          "CAT_UNKNOWN is expected but obtained: " + 
                              str(result) )
