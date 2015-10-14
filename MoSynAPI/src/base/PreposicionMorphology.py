@@ -39,10 +39,7 @@ class PreposicionMorphology(AbstractMorphology):
         ' If the category cannot be determined then CAT_UNKNOWN is returned.
         ' return Integer
         """
-        if self.get_eagles_label()[ self.__IDX_CATEGORY ] == 'S':
-            return self.CAT_ADPOSITION
-        else:
-            return self.CAT_UNKNOWN
+        return self.CAT_ADPOSITION
     #--------------------------------------------------------------------------
     
     

@@ -34,13 +34,17 @@ class Test(unittest.TestCase):
 
     def testCategoryInvalid(self):
         """ Test an invalid Eagles label"""
+        # CAT_ADPOSITION is expected here since PrepositionMorhology class is
+        # meant to model prepositions only. Under that assumption there is no
+        # need to add logic to handle non-preposition labels. If label is not 
+        # a preposition please do not use this class.
         preposicion = PreposicionMorphology("forma", "lema", "xPCMS" )
         result = preposicion.get_category()
         
         self.assertEqual( 
-                         AbstractMorphology.CAT_UNKNOWN, 
+                         AbstractMorphology.CAT_ADPOSITION, 
                          result, 
-                         "CAT_UNKNOWN is expected but obtained: " + 
+                         "CAT_ADPOSITION is expected but obtained: " + 
                              str(result) )
     #--------------------------------------------------------------------------
     #--------------------------------------------------------------------------
