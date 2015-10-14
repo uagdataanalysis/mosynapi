@@ -105,7 +105,7 @@ class Test(unittest.TestCase):
         result = preposicion.get_forma()
         
         self.assertEqual( 
-                         AbstractMorphology.FORMA_UKNOWN, 
+                         AbstractMorphology.FORM_UKNOWN, 
                          result, 
                          "CAT_UNKNOWN is expected but obtained: " + 
                              str(result) )

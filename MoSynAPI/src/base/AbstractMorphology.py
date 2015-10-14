@@ -76,7 +76,7 @@ class AbstractMorphology(object):
     '' Public "constants" for Eagles label Forma:
     '''
     __FORMA_INIT     = __CASE_INIT + 100
-    FORMA_UKNOWN     = __FORMA_INIT + 1
+    FORM_UKNOWN     = __FORMA_INIT + 1
     FORM_SIMPLE     = __FORMA_INIT + 2
     FORM_CONTRACTED  = __FORMA_INIT + 3
     #--------------------------------------------------------------------------

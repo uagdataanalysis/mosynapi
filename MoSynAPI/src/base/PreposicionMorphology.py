@@ -80,7 +80,7 @@ class PreposicionMorphology(AbstractMorphology):
         elif self.get_eagles_label()[ self.__IDX_FORM ] == 'C':
             return self.FORM_CONTRACTED
         else:
-            return self.FORMA_UKNOWN
+            return self.FORM_UKNOWN
     #--------------------------------------------------------------------------
     
     
