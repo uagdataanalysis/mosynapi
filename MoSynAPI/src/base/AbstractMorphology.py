@@ -35,6 +35,8 @@ class AbstractMorphology(object):
     TYPE_UNKNOWN = __TYPE_INIT + 1
     TYPE_CALIFICATIVO = __TYPE_INIT + 2 # Not sure if Calificativo<->Qualifying
     TYPE_PREPOSITION  = __TYPE_INIT + 3
+    TYPE_CARDINAL  = __TYPE_INIT + 4
+    TYPE_ORDINAL  = __TYPE_INIT + 5
     #--------------------------------------------------------------------------
     
     '''
@@ -79,6 +81,16 @@ class AbstractMorphology(object):
     FORM_UNKNOWN = __FORMA_INIT + 1
     FORM_SIMPLE = __FORMA_INIT + 2
     FORM_CONTRACTED = __FORMA_INIT + 3
+    #--------------------------------------------------------------------------
+    
+    '''
+    '' Public "constants" for Eagles label Forma:
+    '''
+    __ROL_INIT = __FORMA_INIT + 100
+    ROL_UNKNOWN = __ROL_INIT + 1
+    ROL_PRONOMINAL = __ROL_INIT + 2
+    ROL_DETERMINANT = __ROL_INIT + 3
+    ROL_ADJECTIVE = __ROL_INIT + 4
     #--------------------------------------------------------------------------
     
 
@@ -229,6 +241,21 @@ class AbstractMorphology(object):
         ' return Integer
         """
         return self.FORM_UNKNOWN
+    #--------------------------------------------------------------------------
+    
+    
+    
+    
+    def get_rol(self):
+        """
+        ' Returns the type of the word based on the Eagles label; e.g.:
+        '    Eagles Label: AQ0CP00
+        '    Category:     TYPE_CALIFICATIVO
+        '
+        ' If the category cannot be determined then TYPE_UNKNOWN is returned.
+        ' return Integer
+        """
+        return self.ROL_UNKNOWN
     #--------------------------------------------------------------------------
     
     '''
