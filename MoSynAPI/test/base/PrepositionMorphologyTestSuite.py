@@ -58,7 +58,7 @@ class Test(unittest.TestCase):
         self.assertEqual( 
                          AbstractMorphology.TYPE_PREPOSITION, 
                          result, 
-                         "CAT_ADPOSICION is expected but obtained: " + 
+                         "TYPE_PREPOSITION is expected but obtained: " + 
                              str(result) )
     #--------------------------------------------------------------------------
 
@@ -71,7 +71,7 @@ class Test(unittest.TestCase):
         self.assertEqual( 
                          AbstractMorphology.TYPE_UNKNOWN, 
                          result, 
-                         "CAT_UNKNOWN is expected but obtained: " + 
+                         "TYPE_UNKNOWN is expected but obtained: " + 
                              str(result) )
     #--------------------------------------------------------------------------
     #--------------------------------------------------------------------------
@@ -85,7 +85,7 @@ class Test(unittest.TestCase):
         self.assertEqual( 
                          AbstractMorphology.FORM_CONTRACTED, 
                          result, 
-                         "CAT_ADPOSICION is expected but obtained: " + 
+                         "FORM_CONTRACTED is expected but obtained: " + 
                              str(result) )
     #--------------------------------------------------------------------------
 
@@ -98,7 +98,7 @@ class Test(unittest.TestCase):
         self.assertEqual( 
                          AbstractMorphology.FORM_SIMPLE, 
                          result, 
-                         "CAT_ADPOSICION is expected but obtained: " + 
+                         "FORM_SIMPLE is expected but obtained: " + 
                              str(result) )
     #--------------------------------------------------------------------------
 
@@ -111,7 +111,7 @@ class Test(unittest.TestCase):
         self.assertEqual( 
                          AbstractMorphology.FORM_UNKNOWN, 
                          result, 
-                         "CAT_UNKNOWN is expected but obtained: " + 
+                         "FORM_UNKNOWN is expected but obtained: " + 
                              str(result) )
     #--------------------------------------------------------------------------
     #--------------------------------------------------------------------------
@@ -125,7 +125,7 @@ class Test(unittest.TestCase):
         self.assertEqual( 
                          AbstractMorphology.GENDER_MALE, 
                          result, 
-                         "CAT_ADPOSICION is expected but obtained: " + 
+                         "GENDER_MALE is expected but obtained: " + 
                              str(result) )
     #--------------------------------------------------------------------------
 
@@ -138,7 +138,7 @@ class Test(unittest.TestCase):
         self.assertEqual( 
                          AbstractMorphology.GENDER_UKNOWN, 
                          result, 
-                         "CAT_UNKNOWN is expected but obtained: " + 
+                         "GENDER_UKNOWN is expected but obtained: " + 
                              str(result) )
     #--------------------------------------------------------------------------
     #--------------------------------------------------------------------------
@@ -152,7 +152,7 @@ class Test(unittest.TestCase):
         self.assertEqual( 
                          AbstractMorphology.NUMBER_SINGULAR, 
                          result, 
-                         "CAT_ADPOSICION is expected but obtained: " + 
+                         "NUMBER_SINGULAR is expected but obtained: " + 
                              str(result) )
     #--------------------------------------------------------------------------
 
@@ -165,7 +165,7 @@ class Test(unittest.TestCase):
         self.assertEqual( 
                          AbstractMorphology.NUMBER_UKNOWN, 
                          result, 
-                         "CAT_UNKNOWN is expected but obtained: " + 
+                         "NUMBER_UKNOWN is expected but obtained: " + 
                              str(result) )
     #--------------------------------------------------------------------------
     #--------------------------------------------------------------------------

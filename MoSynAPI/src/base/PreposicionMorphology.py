@@ -13,11 +13,11 @@ class PreposicionMorphology(AbstractMorphology):
     '''
     '' Private "constants":
     '''
-    __IDX_CATEGORY = 0  # Char position for preposition "Categoria". 
-    __IDX_TYPE = 1      # Char position for preposition "Tipo". 
-    __IDX_FORM = 2      # Char position for preposition "Forma". 
-    __IDX_GENDER = 3    # Char position for preposition "Genero". 
-    __IDX_NUMBER = 4    # Char position for preposition "Numbero". 
+    __IDX_CATEGORY = 0  # Char position for "Categoria". 
+    __IDX_TYPE = 1      # Char position for "Tipo". 
+    __IDX_FORM = 2      # Char position for "Forma". 
+    __IDX_GENDER = 3    # Char position for "Genero". 
+    __IDX_NUMBER = 4    # Char position for "Numbero". 
     #--------------------------------------------------------------------------
     
 
