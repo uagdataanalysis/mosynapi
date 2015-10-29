@@ -32,16 +32,3 @@ class EventHook(object):
         for the_handler in self.__handlers:
             if the_handler.im_self == in_object:
                 self -= the_handler
-
-
-class TestEvent:
-
-    def __init__(self):
-        self.on_change = EventHook()
-        self.on_trigger = EventHook()
-
-    def do_something(self):
-        self.on_change.fire('hola')
-
-    def do_something2(self, text):
-        self.on_trigger.fire(text)

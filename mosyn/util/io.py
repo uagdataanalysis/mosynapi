@@ -13,13 +13,12 @@
 import sys
 import codecs
 
-from eagles import MorphologyFactory
-
-__author__ = 'Arturo Asael'
+__author__ = 'asaelt'
 
 
 class Input(object):
-    """description of class"""
+    """ Provides methods to read from an input.
+    """
     def __init__(self):
         pass
 
@@ -30,11 +29,14 @@ class Input(object):
         pass
 
     def read(self):
+        """ Read a value from the input.
+        """
         pass
 
 
 class Output(object):
-    """description of class"""
+    """ Provides methods to write to an output.
+    """
     def __init__(self):
         pass
 
@@ -45,13 +47,18 @@ class Output(object):
         pass
 
     def write(self, value):
+        """ Writes a value in the output.
+        :param value: The value to be written.
+        """
         pass
 
 
 class FileInput(Input):
-
-    """description of class"""
+    """ Provides methods to read from a file input.
+    """
     def __init__(self, filename):
+        """ Initializes a new instance of FileInput.
+        """
         super(Input, self).__init__()
         self.filename = filename
 
@@ -63,13 +70,19 @@ class FileInput(Input):
         self.input_file.close()
 
     def read(self):
+        """ Read a value from the file input.
+        :return: An iterable collection of text lines read from the file input.
+        """
         for line in self.input_file:
             yield line
 
 
 class FileOutput(Output):
-    """description of class"""
+    """ Provides methods to write to a file output.
+    """
     def __init__(self, filename):
+        """ Initializes a new instance of FileOutput.
+        """
         super(Output, self).__init__()
         self.filename = filename
 
@@ -81,23 +94,38 @@ class FileOutput(Output):
         self.output_file.close()
 
     def write(self, value):
+        """ Writes a value in the file output.
+        :param value: The value to be written.
+        """
         self.output_file.write(value)
 
 
 class SystemInput(Input):
-
+    """ Provides methods to read from the standard input.
+    """
     def __init__(self):
+        """ Initializes a new instance of SystemInput.
+        """
         pass
 
     def read(self):
+        """ Read a value from the standard input.
+        :return: An iterable collection of text lines read from the standard input.
+        """
         for line in sys.stdin:
             yield line
 
 
 class SystemOutput(Output):
-
+    """ Provides methods to write in the standard output.
+    """
     def __init__(self):
+        """ Initializes a new instance of SystemOutput.
+        """
         super(Output, self).__init__()
 
     def write(self, value):
+        """ Writes a value in the standard output.
+        :param value: The value to be written.
+        """
         sys.stdout.write(value)
