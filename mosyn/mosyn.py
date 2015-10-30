@@ -12,22 +12,28 @@
 
 import sys
 import nltk
-import pandas as pd
+import codecs
 import os.path as path
 
-from util.events import EventHook
 from util.io import FileInput
 from util.io import FileOutput
 from util.io import SystemInput
 from util.io import SystemOutput
+from util.events import EventHook
 
-__author__ = 'Arturo Asael'
-__version__ = '1.0.0.0'
+__author__ = 'asaelt'
+__version__ = '2015.1.0.1'
 
 
-class MorphologicalAnalisys:
+class MorphologicalAnalysis:
+    """ Provides methods to perform a morphological analysis to a text entry.
+    """
 
     def __init__(self, dictionary):
+        """ Initializes a new instance of MorphologicalAnalysis.
+        :param dictionary: A morphological dictionary.
+        :return:
+        """
         self.dictionary = dictionary
         self.on_process = EventHook()
         self._cache_dict = {}  # Output Dictionary Cache
@@ -35,7 +41,10 @@ class MorphologicalAnalisys:
         self._default_eagles = u'NP00000'
 
     def analyze_text(self, value):
-
+        """ Analyzes a piece of text and returns their morphological information.
+        :param value: The text to analyse.
+        :return: An iterable collection of morphological representation of the text.
+        """
         tokens = nltk.word_tokenize(value)
 
         for token in tokens:  # Iterate over all tokens in the line
@@ -53,52 +62,98 @@ class MorphologicalAnalisys:
 
 
 class AnalysisManager:
+    """ Provides methods to perform automatic morphological analysis of a set of inputs.
+    """
 
     def __init__(self, dictionary, input_manager, output_manager):
+        """ Initializes a new instance of AnalysisManager.
+        :param dictionary: A morphological dictionary.
+        :param input_manager: An instance of mosyn.util.io.Input as input method.
+        :param output_manager: An instance of mosyn.util.io.Output as output method.
+        """
         self.on_process = EventHook()
         self.input_manager = input_manager
         self.output_manager = output_manager
-        self.analysis = MorphologicalAnalisys(dictionary)
+        self.analysis = MorphologicalAnalysis(dictionary)
 
     def start_analysis(self):
+        """ Starts the analysis of the input instance with the defined dictionary.
+        """
         with self.input_manager, self.output_manager:
             for line in self.input_manager.read():
                 for result in self.analysis.analyze_text(line):
                     self.output_manager.write(result)
 
 
-class DictionaryLoader:
+class MorphologicalDictionary:
+    """ Represents a morphological dictionary.
+    """
 
-    def __init__(self):
-        pass
-
-    @staticmethod
-    def load_dictionary(filename):
+    def __init__(self, filename):
+        """ Initializes a new instance of MorphologicalDictionary.
+        :param filename: The dictionary filename.
         """
-        A helper function to load our dictionary using pandas
-         param csv_path path to csv dictionary
+        self.filename = filename
+        self.dictionary = {}
 
-        returns a pandas dataframe object ready to do queries using 'get_word' method
+    def load(self):
+        """ Loads the dictionary filename.
+        :return: An instance of mosyn.MorphologicalDictionary.
         """
-        dictionary = pd.read_csv(filename, quotechar=u"'", escapechar=u"\\", encoding=u'utf-8')
-        dictionary.set_index(u'word', inplace=True)
+        with codecs.open(self.filename, mode='r', encoding='utf-8') as f:
+            ix = 0
+            cache = []
+            for line in f:
+                if ix == 0:
+                    ix += 1
+                    continue
 
-        def get_word(value, default=None):
-            try:
-                default = dictionary.loc[value]
-                if isinstance(default, pd.core.frame.DataFrame):
-                    default = default.to_dict(u'list')
-                    default = zip(default[u'root'], default[u'eagles'])
-                else:
-                    default = default.to_dict()
-                    default = [(default[u'root'], default[u'eagles'])]
-            except KeyError:
-                pass
+                temp = self._parse_line(line)
 
+                if not cache or temp and temp[0] != cache[0]:
+                    if cache:
+                        self.dictionary[cache[0]] = cache[1]
+                        cache = []
+                    cache = [temp[0], [temp[1:3]]]
+                elif temp and temp[0] == cache[0]:
+                    cache[1].append(temp[1:3])
+
+            if cache:
+                self.dictionary[cache[0]] = cache[1]
+
+        return self.dictionary
+
+    def get_word(self, value, default=None):
+        """ Gets the morphological information of the word.
+        :param value: The word value to be find.
+        :param default: The morphological information to return if the word is not found.
+        :return: The morphological representation of the word.
+        """
+        temp = self.dictionary.get(value, default)
+
+        if temp:
+            return temp
+        else:
             return default
 
-        dictionary.get_word = get_word
-        return dictionary
+    def _parse_line(self, text):
+        """ Converts a text to an array of elements.
+        :param text: The value to be converted.
+        :return: The array representation of the text.
+        :raise Exception: if the array does not agree with the dictionary format.
+        """
+        initial = True
+        if initial and text.startswith(u','):
+            initial = False
+            temp = text.rstrip().split(',')
+            items = [',', ',', temp[len(temp)-1]]
+        else:
+            items = text.rstrip().split(u',')
+
+        if len(items) >= 3:
+            return items[0], items[1], items[2]
+        else:
+            raise Exception('Error on dictionary format')
 
 
 __dictionary_file = ''
@@ -110,6 +165,9 @@ __help = False
 
 
 def get_parameters(argv):
+    """ Extracts the parameters for an argument array and set them for global use.
+    :param argv: The argument array.
+    """
     global __dictionary_file
     global __in_filename
     global __out_filename
@@ -140,6 +198,10 @@ def get_parameters(argv):
 
 
 def get_output_filename(filename):
+    """ Sets a default name for the output file.
+    :param filename: The base filename.
+    :return: A filename for a output file.
+    """
     ix = filename.rfind('.')
     if 0 >= ix < len(filename)-1:
         return filename[:ix] + '_morphological.' + filename[ix+1:]
@@ -147,6 +209,10 @@ def get_output_filename(filename):
 
 
 def are_valid_parameters():
+    """ Validates the input parameters.
+    :return: True if parameters are valid
+    :raise Exception: if dictionary input or file input are not found.
+    """
     if __in_filename:
         if not path.isfile(__in_filename):
             raise Exception(u'Input file not found.')
@@ -157,10 +223,14 @@ def are_valid_parameters():
 
 
 def show_help():
+    """ Shows the available options.
+    """
     print('----------- MoSyn Ver.'+__version__+' -----------')
 
 
-def execute():
+def _execute():
+    """ Executes the application with the selected parameters.
+    """
     input_method = None
     output_method = None
     default_dictionary = ''
@@ -180,7 +250,8 @@ def execute():
     else:
         default_dictionary = u'dict\spanish_dict.csv'
 
-    dictionary = DictionaryLoader.load_dictionary(default_dictionary)
+    dictionary = MorphologicalDictionary(default_dictionary)
+    dictionary.load()
 
     manager = AnalysisManager(
         dictionary,
@@ -191,6 +262,9 @@ def execute():
 
 
 def main(argv):
+    """ Main method.
+    :param argv: The application arguments.
+    """
     get_parameters(argv)
 
     if __help:
@@ -198,11 +272,11 @@ def main(argv):
     else:
         try:
             if are_valid_parameters():
-                execute()
+                _execute()
             else:
                 sys.exit(1)  # If we detect an error then exit
         except Exception as e:
             print(e)
 
-if __name__ == "__main__":
+if __name__ == "__main__":  # The Application starts here.
     main(sys.argv)
