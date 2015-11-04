@@ -91,7 +91,7 @@ class AbstractMorphology(object):
     __TYPE_INIT = __CAT_INIT + 100
     TYPE_UNKNOWN = __TYPE_INIT + 1
     TYPE_CALIFICATIVO = __TYPE_INIT + 2
-    TYPE_PREPOSICION = __TYPE_INIT + 3
+    TYPE_PREPOSITION = __TYPE_INIT + 3
     TYPE_GENERAL = __TYPE_INIT + 4
     TYPE_DEFINIDO = __TYPE_INIT + 5
     TYPE_DEMOSTRATIVO = __TYPE_INIT + 6
@@ -123,10 +123,10 @@ class AbstractMorphology(object):
     '' Public "constants" for Eagles label Gender:
     '''
     __GENDER_INIT = __DEGREE_INIT + 100
-    GENDER_UKNOWN = __GENDER_INIT + 1
-    GENDER_MASCULINO = __GENDER_INIT + 2
-    GENDER_FEMENINO = __GENDER_INIT + 3
-    GENDER_COMUN = __GENDER_INIT + 4
+    GENDER_UNKNOWN = __GENDER_INIT + 1
+    GENDER_MALE = __GENDER_INIT + 2
+    GENDER_FEMALE = __GENDER_INIT + 3
+    GENDER_COMMON = __GENDER_INIT + 4
     # --------------------------------------------------------------------------
 
     '''
@@ -143,10 +143,10 @@ class AbstractMorphology(object):
     '' Public "constants" for Eagles label Case:
     '''
     __CASE_INIT = __NUMBER_INIT + 100
-    CASE_UKNOWN = __CASE_INIT + 1
+    CASE_UNKNOWN = __CASE_INIT + 1
     CASE_NO_VALUE = __CASE_INIT + 2
-    CASE_NOMINATIVO = __CASE_INIT + 3
-    CASE_ACUSATIVO = __CASE_INIT + 4
+    CASE_NOMINATIVE = __CASE_INIT + 3
+    CASE_ACUSATIVE = __CASE_INIT + 4
     CASE_DATIVO = __CASE_INIT + 5
     CASE_OBLICUO = __CASE_INIT + 6
     # --------------------------------------------------------------------------
@@ -157,14 +157,14 @@ class AbstractMorphology(object):
     __FORMA_INIT = __CASE_INIT + 100
     FORM_UNKNOWN = __FORMA_INIT + 1
     FORM_SIMPLE = __FORMA_INIT + 2
-    FORM_CONTRAIDA = __FORMA_INIT + 3
+    FORM_CONTRACTED = __FORMA_INIT + 3
     # --------------------------------------------------------------------------
 
     '''
     '' Public "constants" for Eagles label Function:
     '''
     __FUNCTION_INIT = __FORMA_INIT + 100
-    FUNCTION_UKNOWN = __FUNCTION_INIT + 1
+    FUNCTION_UNKNOWN = __FUNCTION_INIT + 1
     FUNCTION_PARTICIPLE = __FUNCTION_INIT + 2
     FUNCTION_PRONOMINAL = __FUNCTION_INIT + 3
     FUNCTION_DETERMINANTE = __FUNCTION_INIT + 4
@@ -175,7 +175,7 @@ class AbstractMorphology(object):
     '' Public "constants" for Eagles label Function:
     '''
     __PERSON_INIT = __FUNCTION_INIT + 100
-    PERSON_UKNOWN = __PERSON_INIT + 1
+    PERSON_UNKNOWN = __PERSON_INIT + 1
     PERSON_FIRST = __PERSON_INIT + 2
     PERSON_SECOND = __PERSON_INIT + 3
     PERSON_THIRD = __PERSON_INIT + 4
@@ -185,7 +185,7 @@ class AbstractMorphology(object):
     '' Public "constants" for Eagles label Function:
     '''
     __HOLDER_INIT = __PERSON_INIT + 100
-    HOLDER_UKNOWN = __HOLDER_INIT + 1
+    HOLDER_UNKNOWN = __HOLDER_INIT + 1
     HOLDER_FIRST_PERSON_SINGLE = __HOLDER_INIT + 2
     HOLDER_SECOND_PERSON_SINGLE = __HOLDER_INIT + 3
     HOLDER_THIRD_PERSON = __HOLDER_INIT + 4
@@ -197,7 +197,7 @@ class AbstractMorphology(object):
     '' Public "constants" for Eagles label Function:
     '''
     __SEMANTIC_GENDER_INIT = __HOLDER_INIT + 100
-    SEMANTIC_GENDER_UKNOWN = __SEMANTIC_GENDER_INIT + 1
+    SEMANTIC_GENDER_UNKNOWN = __SEMANTIC_GENDER_INIT + 1
     SEMANTIC_GENDER_NO_VALUE = __SEMANTIC_GENDER_INIT + 2
     # --------------------------------------------------------------------------
 
@@ -205,7 +205,7 @@ class AbstractMorphology(object):
     '' Public "constants" for Eagles label Function:
     '''
     __MODE_INIT = __SEMANTIC_GENDER_INIT + 100
-    MODE_UKNOWN = __MODE_INIT + 1
+    MODE_UNKNOWN = __MODE_INIT + 1
     MODE_INDICATIVO = __MODE_INIT + 2
     MODE_SUBJUNTIVO = __MODE_INIT + 3
     MODE_IMPERATIVO = __MODE_INIT + 4
@@ -219,7 +219,7 @@ class AbstractMorphology(object):
     '' Public "constants" for Eagles label Function:
     '''
     __TIME_INIT = __MODE_INIT + 100
-    TIME_UKNOWN = __TIME_INIT + 1
+    TIME_UNKNOWN = __TIME_INIT + 1
     TIME_PRESENT = __TIME_INIT + 2
     TIME_IMPERFECT = __TIME_INIT + 3
     TIME_FUTURE = __TIME_INIT + 4
@@ -233,6 +233,16 @@ class AbstractMorphology(object):
     POLITENESS_UKNOWN = __POLITENESS_INIT + 1
     POLITENESS_POLITE = __POLITENESS_INIT + 2
     # --------------------------------------------------------------------------
+    
+    '''
+    '' Public "constants" for Eagles label Forma:
+    '''
+    __ROL_INIT = __FORMA_INIT + 100
+    ROL_UNKNOWN = __ROL_INIT + 1
+    ROL_PRONOMINAL = __ROL_INIT + 2
+    ROL_DETERMINANT = __ROL_INIT + 3
+    ROL_ADJECTIVE = __ROL_INIT + 4
+    #--------------------------------------------------------------------------
 
     def __init__(self, forma, lema, label):
         '''
@@ -337,7 +347,7 @@ class AbstractMorphology(object):
         ' If the category cannot be determined then GENDER_UNKNOWN is returned.
         ' return Integer
         """
-        return self.GENDER_UKNOWN
+        return self.GENDER_UNKNOWN
     #--------------------------------------------------------------------------
     
     
@@ -367,7 +377,7 @@ class AbstractMorphology(object):
         ' If the category cannot be determined then NUMBER_UNKNOWN is returned.
         ' return Integer
         """
-        return self.CASE_UKNOWN
+        return self.CASE_UNKNOWN
     #--------------------------------------------------------------------------
     
     
@@ -515,19 +525,19 @@ class AdjectiveMorphology(AbstractMorphology):
         """
         ' Returns the Form of the word based on the Eagles label; e.g.:
         '    Eagles Label: SPCMS
-        '    Category:     FORM_CONTRAIDA
+        '    Category:     FORM_CONTRACTED
         '
         ' If the category cannot be determined then FORMA_UNKNOWN is returned.
         ' return Integer
         """
         if self.get_eagles_label()[self.__IDX_GENDER] == 'M':
-            return self.GENDER_MASCULINO
+            return self.GENDER_MALE
         elif self.get_eagles_label()[self.__IDX_GENDER] == 'F':
-            return self.GENDER_FEMENINO
+            return self.GENDER_FEMALE
         elif self.get_eagles_label()[self.__IDX_GENDER] == 'C':
-            return self.GENDER_COMUN
+            return self.GENDER_COMMON
         else:
-            return self.GENDER_UKNOWN
+            return self.GENDER_UNKNOWN
     # --------------------------------------------------------------------------
 
     def get_number(self):
@@ -561,7 +571,7 @@ class AdjectiveMorphology(AbstractMorphology):
         if self.get_eagles_label()[self.__IDX_CASE] == '0':
             return self.CASE_NO_VALUE
         else:
-            return self.CASE_UKNOWN
+            return self.CASE_UNKNOWN
     # --------------------------------------------------------------------------
 
     def get_function(self):
@@ -576,7 +586,7 @@ class AdjectiveMorphology(AbstractMorphology):
         if self.get_eagles_label()[self.__IDX_FUNCTION] == 'P':
             return self.FUNCTION_PARTICIPLE
         else:
-            return self.FUNCTION_UKNOWN
+            return self.FUNCTION_UNKNOWN
     # --------------------------------------------------------------------------
 
 
@@ -686,19 +696,19 @@ class ArticleMorphology(AbstractMorphology):
         """
         ' Returns the Form of the word based on the Eagles label; e.g.:
         '    Eagles Label: SPCMS
-        '    Category:     FORM_CONTRAIDA
+        '    Category:     FORM_CONTRACTED
         '
         ' If the category cannot be determined then FORMA_UNKNOWN is returned.
         ' return Integer
         """
         if self.get_eagles_label()[self.__IDX_GENDER] == 'M':
-            return self.GENDER_MASCULINO
+            return self.GENDER_MALE
         elif self.get_eagles_label()[self.__IDX_GENDER] == 'F':
-            return self.GENDER_FEMENINO
+            return self.GENDER_FEMALE
         elif self.get_eagles_label()[self.__IDX_GENDER] == 'C':
-            return self.GENDER_COMUN
+            return self.GENDER_COMMON
         else:
-            return self.GENDER_UKNOWN
+            return self.GENDER_UNKNOWN
     # --------------------------------------------------------------------------
 
     def get_number(self):
@@ -730,7 +740,7 @@ class ArticleMorphology(AbstractMorphology):
         if self.get_eagles_label()[self.__IDX_CASE] == '0':
             return self.CASE_NO_VALUE
         else:
-            return self.CASE_UKNOWN
+            return self.CASE_UNKNOWN
     # --------------------------------------------------------------------------
 
 
@@ -865,26 +875,26 @@ class DeterminantMorphology(AbstractMorphology):
         elif self.get_eagles_label()[self.__IDX_PERSON] == '3':
             return self.PERSON_THIRD
         else:
-            return self.PERSON_UKNOWN
+            return self.PERSON_UNKNOWN
     # --------------------------------------------------------------------------
 
     def get_gender(self):
         """
         ' Returns the Form of the word based on the Eagles label; e.g.:
         '    Eagles Label: SPCMS
-        '    Category:     FORM_CONTRAIDA
+        '    Category:     FORM_CONTRACTED
         '
         ' If the category cannot be determined then FORMA_UNKNOWN is returned.
         ' return Integer
         """
         if self.get_eagles_label()[self.__IDX_GENDER] == 'M':
-            return self.GENDER_MASCULINO
+            return self.GENDER_MALE
         elif self.get_eagles_label()[self.__IDX_GENDER] == 'F':
-            return self.GENDER_FEMENINO
+            return self.GENDER_FEMALE
         elif self.get_eagles_label()[self.__IDX_GENDER] == 'C':
-            return self.GENDER_COMUN
+            return self.GENDER_COMMON
         else:
-            return self.GENDER_UKNOWN
+            return self.GENDER_UNKNOWN
     # --------------------------------------------------------------------------
 
     def get_number(self):
@@ -918,7 +928,7 @@ class DeterminantMorphology(AbstractMorphology):
         if self.get_eagles_label()[self.__IDX_CASE] == '0':
             return self.CASE_NO_VALUE
         else:
-            return self.CASE_UKNOWN
+            return self.CASE_UNKNOWN
     # --------------------------------------------------------------------------
 
     def get_holder(self):
@@ -941,7 +951,7 @@ class DeterminantMorphology(AbstractMorphology):
         elif self.get_eagles_label()[self.__IDX_HOLDER] == '5':
             return self.HOLDER_SECOND_PERSON_PLURAL
         else:
-            return self.HOLDER_UKNOWN
+            return self.HOLDER_UNKNOWN
     # --------------------------------------------------------------------------
 
 
@@ -1031,19 +1041,19 @@ class NameMorphology(AbstractMorphology):
         """
         ' Returns the Form of the word based on the Eagles label; e.g.:
         '    Eagles Label: SPCMS
-        '    Category:     FORM_CONTRAIDA
+        '    Category:     FORM_CONTRACTED
         '
         ' If the category cannot be determined then FORMA_UNKNOWN is returned.
         ' return Integer
         """
         if self.get_eagles_label()[self.__IDX_GENDER] == 'M':
-            return self.GENDER_MASCULINO
+            return self.GENDER_MALE
         elif self.get_eagles_label()[self.__IDX_GENDER] == 'F':
-            return self.GENDER_FEMENINO
+            return self.GENDER_FEMALE
         elif self.get_eagles_label()[self.__IDX_GENDER] == 'C':
-            return self.GENDER_COMUN
+            return self.GENDER_COMMON
         else:
-            return self.GENDER_UKNOWN
+            return self.GENDER_UNKNOWN
     # --------------------------------------------------------------------------
 
     def get_number(self):
@@ -1077,7 +1087,7 @@ class NameMorphology(AbstractMorphology):
         if self.get_eagles_label()[self.__IDX_CASE] == '0':
             return self.CASE_NO_VALUE
         else:
-            return self.CASE_UKNOWN
+            return self.CASE_UNKNOWN
     # --------------------------------------------------------------------------
 
     def get_semantic_gender(self):
@@ -1092,7 +1102,7 @@ class NameMorphology(AbstractMorphology):
         if self.get_eagles_label()[self.__IDX_SEMANTIC_GENDER] == '0':
             return self.SEMANTIC_GENDER_NO_VALUE
         else:
-            return self.SEMANTIC_GENDER_UKNOWN
+            return self.SEMANTIC_GENDER_UNKNOWN
     # --------------------------------------------------------------------------
 
     def get_degree(self):
@@ -1214,12 +1224,12 @@ class NumeralMorphology(AbstractMorphology):
         """
         ' Returns the Case of the word based on the Eagles label; e.g.:
         '    Eagles Label: MCCP00
-        '    Category:     CASE_UKNOWN
+        '    Category:     CASE_UNKNOWN
         '
-        ' CASE_UKNOWN is returned all the time.
+        ' CASE_UNKNOWN is returned all the time.
         ' return Integer
         """
-        return self.CASE_UKNOWN
+        return self.CASE_UNKNOWN
     #--------------------------------------------------------------------------
     
     
@@ -1250,7 +1260,7 @@ class NumeralMorphology(AbstractMorphology):
         '    - GENDER_MALE
         '    - GENDER_FEMALE
         '    - GENDER_COMMON
-        '    - GENDER_UKNOWN
+        '    - GENDER_UNKNOWN
         '
         ' If the category cannot be determined then GENDER_UNKNOWN is returned.
         ' return Integer
@@ -1262,7 +1272,7 @@ class NumeralMorphology(AbstractMorphology):
         elif self.get_eagles_label()[ self.__IDX_GENDER ] == 'C':
             return self.GENDER_COMMON
         else:
-            return self.GENDER_UKNOWN
+            return self.GENDER_UNKNOWN
     #--------------------------------------------------------------------------
     
     
@@ -1292,6 +1302,11 @@ class NumeralMorphology(AbstractMorphology):
     #--------------------------------------------------------------------------
 
 
+'''
+Created on 05/10/2015
+
+@author: axelg
+'''
 class PrepositionMorphology(AbstractMorphology):
     '''
     classdocs
@@ -1300,20 +1315,23 @@ class PrepositionMorphology(AbstractMorphology):
     '''
     '' Private "constants":
     '''
-    __IDX_CATEGORY = 0    # Char position for preposition "Categoria".
-    __IDX_TYPE = 1    # Char position for preposition "Tipo".
-    __IDX_FORM = 2    # Char position for preposition "Forma".
-    __IDX_GENDER = 3    # Char position for preposition "Genero".
-    __IDX_NUMBER = 4    # Char position for preposition "Numbero".
-    # --------------------------------------------------------------------------
+    __IDX_CATEGORY = 0  # Char position for "Categoria". 
+    __IDX_TYPE = 1      # Char position for "Tipo". 
+    __IDX_FORM = 2      # Char position for "Forma". 
+    __IDX_GENDER = 3    # Char position for "Genero". 
+    __IDX_NUMBER = 4    # Char position for "Numbero". 
+    #--------------------------------------------------------------------------
+    
 
-    def __init__(self, forma, lema, label_):
+    def __init__(self, form, lema, label_):
         '''
         Constructor
         '''
-        super(PrepositionMorphology, self).__init__(forma, lema, label_)
-    # --------------------------------------------------------------------------
-
+        super(PrepositionMorphology, self).__init__( form, lema, label_)
+    #--------------------------------------------------------------------------
+    
+    
+    
     def get_category(self):
         """
         ' Returns the category of the word based on the Eagles label; e.g.:
@@ -1323,12 +1341,12 @@ class PrepositionMorphology(AbstractMorphology):
         ' If the category cannot be determined then CAT_UNKNOWN is returned.
         ' return Integer
         """
-        if self.get_eagles_label()[self.__IDX_CATEGORY] == 'S':
-            return self.CAT_ADPOSICION
-        else:
-            return self.CAT_UNKNOWN
-    # --------------------------------------------------------------------------
-
+        return self.CAT_ADPOSITION
+    #--------------------------------------------------------------------------
+    
+    
+    
+    
     def get_type(self):
         """
         ' Returns the type of the word based on the Eagles label; e.g.:
@@ -1338,29 +1356,35 @@ class PrepositionMorphology(AbstractMorphology):
         ' If the category cannot be determined then TYPE_UNKNOWN is returned.
         ' return Integer
         """
-        if self.get_eagles_label()[self.__IDX_TYPE] == 'P':
-            return self.TYPE_PREPOSICION
+        if self.get_eagles_label()[ self.__IDX_TYPE ] == 'P':
+            return self.TYPE_PREPOSITION
         else:
             return self.TYPE_UNKNOWN
-    # --------------------------------------------------------------------------
-
+    #--------------------------------------------------------------------------
+    
+    
+    
+    
     def get_label_form(self):
         """
         ' Returns the Form of the word based on the Eagles label; e.g.:
         '    Eagles Label: SPCMS
-        '    Category:     FORM_CONTRAIDA
+        '    Category:     FORM_CONTRACTED
         '
         ' If the category cannot be determined then FORMA_UNKNOWN is returned.
         ' return Integer
         """
-        if self.get_eagles_label()[self.__IDX_FORM] == 'S':
+        if self.get_eagles_label()[ self.__IDX_FORM ] == 'S':
             return self.FORM_SIMPLE
-        elif self.get_eagles_label()[self.__IDX_FORM] == 'C':
-            return self.FORM_CONTRAIDA
+        elif self.get_eagles_label()[ self.__IDX_FORM ] == 'C':
+            return self.FORM_CONTRACTED
         else:
             return self.FORM_UNKNOWN
-    # --------------------------------------------------------------------------
-
+    #--------------------------------------------------------------------------
+    
+    
+    
+    
     def get_gender(self):
         """
         ' Returns the Gender of the word based on the Eagles label; e.g.:
@@ -1370,12 +1394,15 @@ class PrepositionMorphology(AbstractMorphology):
         ' If the category cannot be determined then GENDER_UNKNOWN is returned.
         ' return Integer
         """
-        if self.get_eagles_label()[self.__IDX_GENDER] == 'M':
-            return self.GENDER_MASCULINO
+        if self.get_eagles_label()[ self.__IDX_GENDER ] == 'M':
+            return self.GENDER_MALE
         else:
             return self.GENDER_UKNOWN
-    # --------------------------------------------------------------------------
-
+    #--------------------------------------------------------------------------
+    
+    
+    
+    
     def get_number(self):
         """
         ' Returns the Number of the word based on the Eagles label; e.g.:
@@ -1385,11 +1412,12 @@ class PrepositionMorphology(AbstractMorphology):
         ' If the category cannot be determined then NUMBER_UNKNOWN is returned.
         ' return Integer
         """
-        if self.get_eagles_label()[self.__IDX_NUMBER] == 'S':
+        if self.get_eagles_label()[ self.__IDX_NUMBER ] == 'S':
             return self.NUMBER_SINGULAR
         else:
-            return self.NUMBER_UNKNOWN
-    # --------------------------------------------------------------------------
+            return self.NUMBER_UKNOWN
+    #--------------------------------------------------------------------------
+
 
 
 class PronounMorphology(AbstractMorphology):
@@ -1474,7 +1502,7 @@ class PronounMorphology(AbstractMorphology):
         elif self.get_eagles_label()[self.__IDX_PERSON] == '3':
             return self.PERSON_THIRD
         else:
-            return self.PERSON_UKNOWN
+            return self.PERSON_UNKNOWN
     # --------------------------------------------------------------------------
 
     def get_gender(self):
@@ -1487,13 +1515,13 @@ class PronounMorphology(AbstractMorphology):
         ' return Integer
         """
         if self.get_eagles_label()[self.__IDX_GENDER] == 'M':
-            return self.GENDER_MASCULINO
+            return self.GENDER_MALE
         elif self.get_eagles_label()[self.__IDX_GENDER] == 'F':
-            return self.GENDER_FEMENINO
+            return self.GENDER_FEMALE
         elif self.get_eagles_label()[self.__IDX_GENDER] == 'C':
-            return self.GENDER_COMUN
+            return self.GENDER_COMMON
         else:
-            return self.GENDER_UKNOWN
+            return self.GENDER_UNKNOWN
     # --------------------------------------------------------------------------
 
     def get_number(self):
@@ -1525,15 +1553,15 @@ class PronounMorphology(AbstractMorphology):
         ' return Integer
         """
         if self.get_eagles_label()[self.__IDX_CASE] == 'N':
-            return self.CASE_NOMINATIVO
+            return self.CASE_NOMINATIVE
         elif self.get_eagles_label()[self.__IDX_CASE] == 'A':
-            return self.CASE_ACUSATIVO
+            return self.CASE_ACUSATIVE
         elif self.get_eagles_label()[self.__IDX_CASE] == 'D':
             return self.CASE_DATIVO
         elif self.get_eagles_label()[self.__IDX_CASE] == 'O':
             return self.CASE_OBLICUO
         else:
-            return self.CASE_UKNOWN
+            return self.CASE_UNKNOWN
     # --------------------------------------------------------------------------
 
     def get_holder(self):
@@ -1556,14 +1584,14 @@ class PronounMorphology(AbstractMorphology):
         elif self.get_eagles_label()[self.__IDX_HOLDER] == '5':
             return self.HOLDER_SECOND_PERSON_PLURAL
         else:
-            return self.HOLDER_UKNOWN
+            return self.HOLDER_UNKNOWN
     # --------------------------------------------------------------------------
 
     def get_politeness(self):
         """
         ' Returns the Form of the word based on the Eagles label; e.g.:
         '    Eagles Label: SPCMS
-        '    Category:     FORM_CONTRAIDA
+        '    Category:     FORM_CONTRACTED
         '
         ' If the category cannot be determined then FORMA_UNKNOWN is returned.
         ' return Integer
@@ -1690,7 +1718,7 @@ class VerbMorphology(AbstractMorphology):
         elif self.get_eagles_label()[self.__IDX_MODE] == 'P':
             return self.MODE_PARTICIPIO
         else:
-            return self.MODE_UKNOWN
+            return self.MODE_UNKNOWN
     # --------------------------------------------------------------------------
 
     def get_time(self):
@@ -1711,7 +1739,7 @@ class VerbMorphology(AbstractMorphology):
         elif self.get_eagles_label()[self.__IDX_TIME] == 'S':
             return self.TIME_PAST
         else:
-            return self.TIME_UKNOWN
+            return self.TIME_UNKNOWN
     # --------------------------------------------------------------------------
 
     def get_person(self):
@@ -1730,7 +1758,7 @@ class VerbMorphology(AbstractMorphology):
         elif self.get_eagles_label()[self.__IDX_PERSON] == '3':
             return self.PERSON_THIRD
         else:
-            return self.PERSON_UKNOWN
+            return self.PERSON_UNKNOWN
     # --------------------------------------------------------------------------
 
     def get_number(self):
@@ -1754,15 +1782,15 @@ class VerbMorphology(AbstractMorphology):
         """
         ' Returns the Form of the word based on the Eagles label; e.g.:
         '    Eagles Label: SPCMS
-        '    Category:     FORM_CONTRAIDA
+        '    Category:     FORM_CONTRACTED
         '
         ' If the category cannot be determined then FORMA_UNKNOWN is returned.
         ' return Integer
         """
         if self.get_eagles_label()[self.__IDX_GENDER] == 'M':
-            return self.GENDER_MASCULINO
+            return self.GENDER_MALE
         elif self.get_eagles_label()[self.__IDX_GENDER] == 'F':
-            return self.GENDER_FEMENINO
+            return self.GENDER_FEMALE
         else:
-            return self.GENDER_UKNOWN
+            return self.GENDER_UNKNOWN
     # --------------------------------------------------------------------------
