@@ -4,8 +4,7 @@ Created on 06/10/2015
 @author: axelg
 '''
 import unittest
-from base.AbstractMorphology import AbstractMorphology
-from base.PreposicionMorphology import PreposicionMorphology
+from base.eagles import *
 
 
 class Test(unittest.TestCase):
@@ -21,7 +20,7 @@ class Test(unittest.TestCase):
 
     def testCategory(self):
         """ Test a valid Eagles label"""
-        preposicion = PreposicionMorphology("forma", "lema", "SPCMS" )
+        preposicion = PrepositionMorphology("forma", "lema", "SPCMS" )
         result = preposicion.get_category()
         
         self.assertEqual( 
@@ -38,7 +37,7 @@ class Test(unittest.TestCase):
         # meant to model prepositions only. Under that assumption there is no
         # need to add logic to handle non-preposition labels. If label is not 
         # a preposition please do not use this class.
-        preposicion = PreposicionMorphology("forma", "lema", "xPCMS" )
+        preposicion = PrepositionMorphology("forma", "lema", "xPCMS" )
         result = preposicion.get_category()
         
         self.assertEqual( 
@@ -52,7 +51,7 @@ class Test(unittest.TestCase):
 
     def testType(self):
         """ Test a valid Eagles label"""
-        preposicion = PreposicionMorphology("forma", "lema", "SPCMS" )
+        preposicion = PrepositionMorphology("forma", "lema", "SPCMS" )
         result = preposicion.get_type()
         
         self.assertEqual( 
@@ -65,7 +64,7 @@ class Test(unittest.TestCase):
 
     def testTypeInvalid(self):
         """ Test an invalid Eagles label"""
-        preposicion = PreposicionMorphology("forma", "lema", "SxCMS" )
+        preposicion = PrepositionMorphology("forma", "lema", "SxCMS" )
         result = preposicion.get_type()
         
         self.assertEqual( 
@@ -79,7 +78,7 @@ class Test(unittest.TestCase):
 
     def testFormaContraida(self):
         """ Test a valid Eagles label"""
-        preposicion = PreposicionMorphology("forma", "lema", "SPCMS" )
+        preposicion = PrepositionMorphology("forma", "lema", "SPCMS" )
         result = preposicion.get_label_form()
         
         self.assertEqual( 
@@ -92,7 +91,7 @@ class Test(unittest.TestCase):
 
     def testFormaSimple(self):
         """ Test a valid Eagles label"""
-        preposicion = PreposicionMorphology("forma", "lema", "SPSMS" )
+        preposicion = PrepositionMorphology("forma", "lema", "SPSMS" )
         result = preposicion.get_label_form()
         
         self.assertEqual( 
@@ -105,7 +104,7 @@ class Test(unittest.TestCase):
 
     def testFormaInvalid(self):
         """ Test an invalid Eagles label"""
-        preposicion = PreposicionMorphology("forma", "lema", "SPxMS" )
+        preposicion = PrepositionMorphology("forma", "lema", "SPxMS" )
         result = preposicion.get_label_form()
         
         self.assertEqual( 
@@ -119,7 +118,7 @@ class Test(unittest.TestCase):
 
     def testGender(self):
         """ Test a valid Eagles label"""
-        preposicion = PreposicionMorphology("forma", "lema", "SPCMS" )
+        preposicion = PrepositionMorphology("forma", "lema", "SPCMS" )
         result = preposicion.get_gender()
         
         self.assertEqual( 
@@ -132,7 +131,7 @@ class Test(unittest.TestCase):
 
     def testGenderInvalid(self):
         """ Test an invalid Eagles Gender for Preposicion"""
-        preposicion = PreposicionMorphology("forma", "lema", "SPCFS" )
+        preposicion = PrepositionMorphology("forma", "lema", "SPCFS" )
         result = preposicion.get_gender()
         
         self.assertEqual( 
@@ -146,7 +145,7 @@ class Test(unittest.TestCase):
 
     def testNumber(self):
         """ Test a valid Eagles label"""
-        preposicion = PreposicionMorphology("forma", "lema", "SPCMS" )
+        preposicion = PrepositionMorphology("forma", "lema", "SPCMS" )
         result = preposicion.get_number()
         
         self.assertEqual( 
@@ -159,11 +158,11 @@ class Test(unittest.TestCase):
 
     def testNumberInvalid(self):
         """ Test an invalid Eagles Number for Preposicion"""
-        preposicion = PreposicionMorphology("forma", "lema", "SPCFP" )
+        preposicion = PrepositionMorphology("forma", "lema", "SPCFP" )
         result = preposicion.get_number()
         
         self.assertEqual( 
-                         AbstractMorphology.NUMBER_UKNOWN, 
+                         AbstractMorphology.NUMBER_UNKNOWN, 
                          result, 
                          "NUMBER_UKNOWN is expected but obtained: " + 
                              str(result) )

@@ -4,8 +4,8 @@ Created on 13/10/2015
 @author: axelg
 '''
 import unittest
-from base.AbbreviationMorphology import AbbreviationMorphology
-from base.AbstractMorphology import AbstractMorphology
+from base.eagles import AbbreviationMorphology
+from base.eagles import AbstractMorphology
 
 
 class Test(unittest.TestCase):
@@ -25,7 +25,7 @@ class Test(unittest.TestCase):
         result = preposicion.get_category()
         
         self.assertEqual( 
-                         AbstractMorphology.CAT_ABBREVIATIONS, 
+                         AbstractMorphology.CAT_ABBREVIATIONS,
                          result, 
                          "CAT_ABBREVIATIONS is expected but obtained: " + 
                              str(result) )
@@ -56,7 +56,7 @@ class Test(unittest.TestCase):
         result = abbreviation.get_type()
         
         self.assertEqual( 
-                         AbstractMorphology.TYPE_UNKNOWN, 
+                         AbstractMorphology.TYPE_UNKNOWN,
                          result, 
                          "TYPE_UKNOWN is expected but obtained: " + 
                              str(result) )
@@ -71,7 +71,7 @@ class Test(unittest.TestCase):
         result = abbreviation.get_label_form()
         
         self.assertEqual( 
-                         AbstractMorphology.FORM_UNKNOWN, 
+                         AbstractMorphology.FORM_UNKNOWN,
                          result, 
                          "FORMA_UKNOWN is expected but obtained: " + 
                              str(result) )
@@ -99,7 +99,7 @@ class Test(unittest.TestCase):
         result = abbreviation.get_number()
         
         self.assertEqual( 
-                         AbstractMorphology.NUMBER_UKNOWN, 
+                         AbstractMorphology.NUMBER_UNKNOWN, 
                          result, 
                          "NUMBER_UKNOWN is expected but obtained: " + 
                              str(result) )

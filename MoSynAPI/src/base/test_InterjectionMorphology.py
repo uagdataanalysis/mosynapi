@@ -4,8 +4,7 @@ Created on 13/10/2015
 @author: axelg
 '''
 import unittest
-from base.InterjectionMorphology import InterjectionMorphology
-from base.AbstractMorphology import AbstractMorphology
+from base.eagles import *
 
 
 class Test(unittest.TestCase):
@@ -90,7 +89,7 @@ class Test(unittest.TestCase):
         result = interjection.get_number()
         
         self.assertEqual( 
-                         AbstractMorphology.NUMBER_UKNOWN, 
+                         AbstractMorphology.NUMBER_UNKNOWN, 
                          result, 
                          "NUMBER_UKNOWN is expected but obtained: " + 
                              str(result) )
