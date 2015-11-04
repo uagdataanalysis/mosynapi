@@ -254,9 +254,11 @@ class AbstractMorphology(object):
         '
         'return String
         """
-        return self.__forma
-    # --------------------------------------------------------------------------
-
+        return self.__form
+    #--------------------------------------------------------------------------
+    
+    
+    
     def get_lema(self):
         """
         ' Returns the root of the word being analyzed; e.g.:
@@ -265,8 +267,10 @@ class AbstractMorphology(object):
         ' return String
         """
         return self.__lema
-    # --------------------------------------------------------------------------
-
+    #--------------------------------------------------------------------------
+    
+    
+    
     def get_eagles_label(self):
         """
         ' Returns the Eagles label that corresponds to the word being analyzed; e.g.:
@@ -276,19 +280,24 @@ class AbstractMorphology(object):
         """
         return self.__label
     #--------------------------------------------------------------------------
-
+    
+    
+    
     def get_category(self):
         """
         ' Returns the category of the word based on the Eagles label; e.g.:
         '    Eagles Label: AQ0CP00
-        '    Category:     CAT_ADJETIVO
+        '    Category:     CAT_ADJECTIVE
         '
         ' If the category cannot be determined then CAT_UNKNOWN is returned.
         ' return Integer
         """
         return self.CAT_UNKNOWN
-    # --------------------------------------------------------------------------
-
+    #--------------------------------------------------------------------------
+    
+    
+    
+    
     def get_type(self):
         """
         ' Returns the type of the word based on the Eagles label; e.g.:
@@ -299,8 +308,11 @@ class AbstractMorphology(object):
         ' return Integer
         """
         return self.TYPE_UNKNOWN
-    # --------------------------------------------------------------------------
-
+    #--------------------------------------------------------------------------
+    
+    
+    
+    
     def get_degree(self):
         """
         ' Returns the Degree of the word based on the Eagles label; e.g.:
@@ -311,8 +323,11 @@ class AbstractMorphology(object):
         ' return Integer
         """
         return self.DEGREE_UNKNOWN
-    # --------------------------------------------------------------------------
-
+    #--------------------------------------------------------------------------
+    
+    
+    
+    
     def get_gender(self):
         """
         ' Returns the Gender of the word based on the Eagles label; e.g.:
@@ -323,8 +338,11 @@ class AbstractMorphology(object):
         ' return Integer
         """
         return self.GENDER_UKNOWN
-    # --------------------------------------------------------------------------
-
+    #--------------------------------------------------------------------------
+    
+    
+    
+    
     def get_number(self):
         """
         ' Returns the Number of the word based on the Eagles label; e.g.:
@@ -334,9 +352,12 @@ class AbstractMorphology(object):
         ' If the category cannot be determined then NUMBER_UNKNOWN is returned.
         ' return Integer
         """
-        return self.NUMBER_UNKNOWN
-    # --------------------------------------------------------------------------
-
+        return self.NUMBER_UKNOWN
+    #--------------------------------------------------------------------------
+    
+    
+    
+    
     def get_case(self):
         """
         ' Returns the Case of the word based on the Eagles label; e.g.:
@@ -347,37 +368,66 @@ class AbstractMorphology(object):
         ' return Integer
         """
         return self.CASE_UKNOWN
-    # --------------------------------------------------------------------------
-
-    def get_forma(self):
+    #--------------------------------------------------------------------------
+    
+    
+    
+    
+    def get_label_form(self):
         """
         ' Returns the Form of the word based on the Eagles label; e.g.:
         '    Eagles Label: SPCMS
-        '    Category:     FORM_CONTRAIDA
+        '    Category:     FORMA_CONTRAIDA
         '
-        ' If the category cannot be determined then FORMA_UNKNOWN is returned.
+        ' If the category cannot be determined then FORM_UNKNOWN is returned.
         ' return Integer
         """
-        return self.FORMA_UNKNOWN
-    # --------------------------------------------------------------------------
-
+        return self.FORM_UNKNOWN
+    #--------------------------------------------------------------------------
+    
+    
+    
+    
+    def get_rol(self):
+        """
+        ' Returns the type of the word based on the Eagles label; e.g.:
+        '    Eagles Label: AQ0CP00
+        '    Category:     TYPE_CALIFICATIVO
+        '
+        ' If the category cannot be determined then TYPE_UNKNOWN is returned.
+        ' return Integer
+        """
+        return self.ROL_UNKNOWN
+    #--------------------------------------------------------------------------
+    
     '''
-    '' Several methods pending to be defined.
+    '' Several methods pending to be defined. 
     '''
 
+
+'''
+Created on 13/10/2015
+
+This class is meant to be used when parsing Abbreviation Eagles labels.
+
+@author: axelg
+'''
 
 class AbbreviationMorphology(AbstractMorphology):
     '''
     classdocs
     '''
 
+
     def __init__(self, form, lema, label_):
         '''
         Constructor
         '''
-        super(AbbreviationMorphology, self).__init__(form, lema, label_)
-    # --------------------------------------------------------------------------
-
+        super(AbbreviationMorphology, self).__init__( form, lema, label_)
+    #--------------------------------------------------------------------------
+    
+    
+    
     def get_category(self):
         """
         ' Returns the category of the word based on the Eagles label; e.g.:
@@ -385,11 +435,11 @@ class AbbreviationMorphology(AbstractMorphology):
         '    Category:     CAT_ABBREVIATIONS
         '
         ' CAT_ADPOSITION is returned all the time since AbbreviationMorphology
-        '  class is meant to model abbreviations only. If the label is not
+        '  class is meant to model abbreviations only. If the label is not 
         ' an abbreviation please do not use this class.
         """
         return self.CAT_ABBREVIATIONS
-    # --------------------------------------------------------------------------
+    #--------------------------------------------------------------------------
 
 
 class AdjectiveMorphology(AbstractMorphology):
