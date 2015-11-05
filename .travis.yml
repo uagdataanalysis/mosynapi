@@ -9,5 +9,5 @@ python:
 #install:
 # command to run tests
 script: 
- - cd MoSynAPI/src/base
+ - cd mosyn/util
  - py.test
