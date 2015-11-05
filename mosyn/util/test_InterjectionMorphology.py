@@ -4,7 +4,7 @@ Created on 13/10/2015
 @author: axelg
 '''
 import unittest
-from base.eagles import *
+from util.eagles import *
 
 
 class Test(unittest.TestCase):

@@ -4,9 +4,8 @@ Created on 13/10/2015
 @author: axelg
 '''
 import unittest
-from base.eagles import AbbreviationMorphology
-from base.eagles import AbstractMorphology
-
+from util.eagles import AbbreviationMorphology
+from util.eagles import AbstractMorphology
 
 class Test(unittest.TestCase):
 
