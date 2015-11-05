@@ -75,7 +75,7 @@ class Test(unittest.TestCase):
         result = interjection.get_gender()
         
         self.assertEqual( 
-                         AbstractMorphology.GENDER_UKNOWN, 
+                         AbstractMorphology.GENDER_UNKNOWN, 
                          result, 
                          "GENDER_UKNOWN is expected but obtained: " + 
                              str(result) )

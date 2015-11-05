@@ -148,7 +148,7 @@ class Test(unittest.TestCase):
         result = numeral.get_gender()
         
         self.assertEqual( 
-                         AbstractMorphology.GENDER_UKNOWN, 
+                         AbstractMorphology.GENDER_UNKNOWN, 
                          result, 
                          "GENDER_UKNOWN is expected but obtained: " + 
                              str(result) )
@@ -202,7 +202,7 @@ class Test(unittest.TestCase):
         result = numeral.get_case()
         
         self.assertEqual( 
-                         AbstractMorphology.CASE_UKNOWN, 
+                         AbstractMorphology.CASE_UNKNOWN, 
                          result, 
                          "CASE_UKNOWN is expected but obtained: " + 
                              str(result) )
