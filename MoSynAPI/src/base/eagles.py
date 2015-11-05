@@ -1298,7 +1298,7 @@ class NumeralMorphology(AbstractMorphology):
         elif self.get_eagles_label()[ self.__IDX_NUMBER ] == 'P':
             return self.NUMBER_PLURAL
         else:
-            return self.NUMBER_UKNOWN
+            return self.NUMBER_UNKNOWN
     #--------------------------------------------------------------------------
 
 
@@ -1397,7 +1397,7 @@ class PrepositionMorphology(AbstractMorphology):
         if self.get_eagles_label()[ self.__IDX_GENDER ] == 'M':
             return self.GENDER_MALE
         else:
-            return self.GENDER_UKNOWN
+            return self.GENDER_UNKNOWN
     #--------------------------------------------------------------------------
     
     
@@ -1415,7 +1415,7 @@ class PrepositionMorphology(AbstractMorphology):
         if self.get_eagles_label()[ self.__IDX_NUMBER ] == 'S':
             return self.NUMBER_SINGULAR
         else:
-            return self.NUMBER_UKNOWN
+            return self.NUMBER_UNKNOWN
     #--------------------------------------------------------------------------
 
 
