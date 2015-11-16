@@ -12,7 +12,9 @@
 
 
 class EventHook(object):
-
+    """
+    Represents a generic event handler.
+    """
     def __init__(self):
         self.__handlers = []
 
