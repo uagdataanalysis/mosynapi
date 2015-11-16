@@ -8,6 +8,9 @@
 # This class is based on the definition of the Eagles Labeling standard:
 # http://www.cs.upc.edu/~nlp/tools/parole-sp.html
 #
+# Source:
+# https://github.com/uagdataanalysis/mosynapi
+#
 # @author: axelg
 
 __author__ = 'axelg'
