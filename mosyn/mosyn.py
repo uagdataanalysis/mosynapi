@@ -5,12 +5,13 @@
 # Modified on 20/10/2015
 # Modified by asaelt
 #
-# This class is based on the definition of the Eagles Labeling standard:
-# http://www.cs.upc.edu/~nlp/tools/parole-sp.html
+# Source:
+# https://github.com/uagdataanalysis/mosynapi
 #
 # @author: asaelt
 
 import sys
+import os
 import nltk
 import codecs
 import os.path as path
@@ -21,8 +22,7 @@ from util.io import SystemInput
 from util.io import SystemOutput
 from util.events import EventHook
 
-__author__ = 'asaelt'
-__version__ = '2015.1.0.1'
+__version__ = '1.0.3'
 
 
 class MorphologicalAnalysis:
@@ -32,33 +32,34 @@ class MorphologicalAnalysis:
     def __init__(self, dictionary):
         """ Initializes a new instance of MorphologicalAnalysis.
         :param dictionary: A morphological dictionary.
-        :return:
         """
         self.dictionary = dictionary
         self.on_process = EventHook()
         self._cache_dict = {}  # Output Dictionary Cache
-        self._template = u' |{0[0]}|{0[1]}|'  # Output Format
         self._default_eagles = u'NP00000'
+
+        self.on_start = EventHook()
+        self.on_completed = EventHook()
 
     def analyze_text(self, value):
         """ Analyzes a piece of text and returns their morphological information.
         :param value: The text to analyse.
         :return: An iterable collection of morphological representation of the text.
         """
+        self.on_start.fire(self)
+
         tokens = nltk.word_tokenize(value)
 
         for token in tokens:  # Iterate over all tokens in the line
-            morpho_data = self._cache_dict.get(token)
+            data = self._cache_dict.get(token)
 
-            if not morpho_data:
-                morpho_data = self.dictionary.get_word(token.lower(), [(token.lower(), u'NP00000')])
-                self._cache_dict[token] = morpho_data
+            if not data:
+                data = self.dictionary.get_word(token.lower(), self._default_eagles)
+                self._cache_dict[token] = data
 
-            formatted = u''
-            for morpho_option in morpho_data:
-                formatted += self._template.format(morpho_option)
+            yield [token, data]
 
-            yield token + formatted + u'\n'
+        self.on_completed.fire(self)
 
 
 class AnalysisManager:
@@ -76,13 +77,20 @@ class AnalysisManager:
         self.output_manager = output_manager
         self.analysis = MorphologicalAnalysis(dictionary)
 
+        self.on_start = EventHook()
+        self.on_completed = EventHook()
+
     def start_analysis(self):
         """ Starts the analysis of the input instance with the defined dictionary.
         """
+        self.on_start.fire(self)
+
         with self.input_manager, self.output_manager:
             for line in self.input_manager.read():
                 for result in self.analysis.analyze_text(line):
                     self.output_manager.write(result)
+
+        self.on_completed.fire(self)
 
 
 class MorphologicalDictionary:
@@ -95,6 +103,8 @@ class MorphologicalDictionary:
         """
         self.filename = filename
         self.dictionary = {}
+
+        self.on_loaded = EventHook()
 
     def load(self):
         """ Loads the dictionary filename.
@@ -121,20 +131,17 @@ class MorphologicalDictionary:
             if cache:
                 self.dictionary[cache[0]] = cache[1]
 
+        self.on_loaded.fire(self)
+
         return self.dictionary
 
-    def get_word(self, value, default=None):
+    def get_word(self, value, default=u'NP00000'):
         """ Gets the morphological information of the word.
         :param value: The word value to be find.
-        :param default: The morphological information to return if the word is not found.
+        :param default: The eagles default classification if the word is not found.
         :return: The morphological representation of the word.
         """
-        temp = self.dictionary.get(value, default)
-
-        if temp:
-            return temp
-        else:
-            return default
+        return self.dictionary.get(value, [(value.lower(), default)])
 
     def _parse_line(self, text):
         """ Converts a text to an array of elements.
@@ -182,18 +189,18 @@ def get_parameters(argv):
         else:
             item = ''
 
-        if arg == '--dict' and item and not item.startswith('--'):
+        if (arg == '--dictionary' or arg == '-dict') and item and not item.startswith('-'):
             __dictionary_file = item
-        elif arg == '--ifile' and item and not item.startswith('--'):
+        elif (arg == '--input-file' or arg == '-in') and item and not item.startswith('-'):
             __in_filename = item
             __sys_input = False
-        elif arg == '--ofile':
+        elif arg == '--output-file' or arg == '-out':
             __sys_output = False
-            if item and not item.startswith('--'):
+            if item and not item.startswith('-'):
                 __out_filename = item
             else:
                 __out_filename = get_output_filename(__in_filename)
-        elif arg == '--help':
+        elif arg == '--help' or arg == '-h':
             __help = True
 
 
@@ -225,7 +232,14 @@ def are_valid_parameters():
 def show_help():
     """ Shows the available options.
     """
-    print('----------- MoSyn Ver.'+__version__+' -----------')
+    print('-------------- MoSyn Ver.'+__version__+' --------------')
+    print('Usage:')
+    print('  mosyn [options]\n')
+    print('General Options:')
+    print('  -h, --help             Show help.')
+    print('  -in, --input-file      Sets the input file.')
+    print('  -out, --input-file     Sets the output file.')
+    print('  -dict, --dictionary    Sets a dictionary file.')
 
 
 def _execute():
@@ -248,7 +262,9 @@ def _execute():
     if __dictionary_file:
         default_dictionary = __dictionary_file
     else:
-        default_dictionary = u'dict\spanish_dict.csv'
+        d = os.path.dirname(sys.modules['__main__'].__file__)
+        resource = os.path.join(d, os.path.join(u'dict', u'spanish_dict.csv'))
+        default_dictionary = resource
 
     dictionary = MorphologicalDictionary(default_dictionary)
     dictionary.load()
@@ -258,6 +274,7 @@ def _execute():
         input_method,
         output_method
     )
+
     manager.start_analysis()
 
 
@@ -276,7 +293,7 @@ def main(argv):
             else:
                 sys.exit(1)  # If we detect an error then exit
         except Exception as e:
-            print(e)
+            print(e.message)
 
 if __name__ == "__main__":  # The Application starts here.
     main(sys.argv)
