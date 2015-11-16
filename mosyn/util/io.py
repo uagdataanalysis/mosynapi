@@ -18,8 +18,6 @@ import codecs
 
 from .format import format_morphological_data
 
-__author__ = 'asaelt'
-
 
 class Input(object):
     """ Provides methods to read from an input.
