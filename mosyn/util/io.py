@@ -5,6 +5,9 @@
 # Modified on 20/10/2015
 # Modified by asaelt
 #
+# Source:
+# https://github.com/uagdataanalysis/mosynapi
+#
 # This class is based on the definition of the Eagles Labeling standard:
 # http://www.cs.upc.edu/~nlp/tools/parole-sp.html
 #
@@ -12,6 +15,8 @@
 
 import sys
 import codecs
+
+from .format import format_morphological_data
 
 __author__ = 'asaelt'
 
@@ -85,6 +90,7 @@ class FileOutput(Output):
         """
         super(Output, self).__init__()
         self.filename = filename
+        self.output_template = u' |{0[0]}|{0[1]}|'
 
     def __enter__(self):
         self.output_file = codecs.open(self.filename, mode='w', encoding='utf-8')
@@ -97,7 +103,7 @@ class FileOutput(Output):
         """ Writes a value in the file output.
         :param value: The value to be written.
         """
-        self.output_file.write(value)
+        self.output_file.write(format_morphological_data(value, self.output_template))
 
 
 class SystemInput(Input):
@@ -106,7 +112,7 @@ class SystemInput(Input):
     def __init__(self):
         """ Initializes a new instance of SystemInput.
         """
-        pass
+        super(Input, self).__init__()
 
     def read(self):
         """ Read a value from the standard input.
@@ -123,9 +129,10 @@ class SystemOutput(Output):
         """ Initializes a new instance of SystemOutput.
         """
         super(Output, self).__init__()
+        self.output_template = u' |{0[0]}|{0[1]}|'
 
     def write(self, value):
         """ Writes a value in the standard output.
         :param value: The value to be written.
         """
-        sys.stdout.write(value)
+        sys.stdout.write(format_morphological_data(value, self.output_template))
