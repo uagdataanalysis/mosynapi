@@ -9,5 +9,5 @@ python:
 #install:
 # command to run tests
 script: 
- - PYTHONPATH=`pwd`/mosyn
- - py.test
+ - cd mosyn
+ - python -m pytest ../test
