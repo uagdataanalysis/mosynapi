@@ -28,7 +28,7 @@ class MorphologyFactory(object):
     # --------------------------------------------------------------------------
 
     @staticmethod
-    def create_morphology(self, forma, lema, label_):
+    def create_morphology( forma, lema, label_):
         """
         Use this method to create the specific Morphology objects; e.g.:
             MorphologyFactory.createMorphology( "SPCMS" )
@@ -77,13 +77,13 @@ class AbstractMorphology(object):
     CAT_ADVERB = __CAT_INIT + 3
     CAT_ARTICLE = __CAT_INIT + 4
     CAT_DETERMINANT = __CAT_INIT + 5
-    CAT_NAMES = __CAT_INIT + 6
-    CAT_VERBS = __CAT_INIT + 7
-    CAT_PRONOUNS = __CAT_INIT + 8
-    CAT_CONJUNCTIONS = __CAT_INIT + 9
-    CAT_NUMERALS = __CAT_INIT + 10
+    CAT_NAME = __CAT_INIT + 6
+    CAT_VERB = __CAT_INIT + 7
+    CAT_PRONOUN = __CAT_INIT + 8
+    CAT_CONJUNCTION = __CAT_INIT + 9
+    CAT_NUMERAL = __CAT_INIT + 10
     CAT_INTERJECTION = __CAT_INIT + 11
-    CAT_ABBREVIATIONS = __CAT_INIT + 12
+    CAT_ABBREVIATION = __CAT_INIT + 12
     CAT_ADPOSITION = __CAT_INIT + 13
     CAT_PUNCTUATION = __CAT_INIT + 14
     #--------------------------------------------------------------------------
@@ -93,23 +93,23 @@ class AbstractMorphology(object):
     '''
     __TYPE_INIT = __CAT_INIT + 100
     TYPE_UNKNOWN = __TYPE_INIT + 1
-    TYPE_CALIFICATIVO = __TYPE_INIT + 2
+    TYPE_CALIFICATIVE = __TYPE_INIT + 2
     TYPE_PREPOSITION = __TYPE_INIT + 3
     TYPE_GENERAL = __TYPE_INIT + 4
-    TYPE_DEFINIDO = __TYPE_INIT + 5
-    TYPE_DEMOSTRATIVO = __TYPE_INIT + 6
-    TYPE_POSESIVO = __TYPE_INIT + 7
-    TYPE_INTERROGATIVO = __TYPE_INIT + 8
-    TYPE_EXCLAMATIVO = __TYPE_INIT + 9
+    TYPE_DEFINED = __TYPE_INIT + 5
+    TYPE_DEMOSTRATIVE = __TYPE_INIT + 6
+    TYPE_POSESIVE = __TYPE_INIT + 7
+    TYPE_INTERROGATIVE = __TYPE_INIT + 8
+    TYPE_EXCLAMATIVE = __TYPE_INIT + 9
     TYPE_INDEFINIDO = __TYPE_INIT + 10
-    TYPE_COMUN = __TYPE_INIT + 11
-    TYPE_PROPIO = __TYPE_INIT + 12
+    TYPE_COMMON = __TYPE_INIT + 11
+    TYPE_PROPER = __TYPE_INIT + 12
     TYPE_PRINCIPAL = __TYPE_INIT + 13
     TYPE_AUXILIAR = __TYPE_INIT + 14
     TYPE_PERSONAL = __TYPE_INIT + 15
-    TYPE_RELATIVO = __TYPE_INIT + 16
-    TYPE_COORDINADA = __TYPE_INIT + 17
-    TYPE_SUBORDINADA = __TYPE_INIT + 18
+    TYPE_RELATIVE = __TYPE_INIT + 16
+    TYPE_COORDINATED = __TYPE_INIT + 17
+    TYPE_SUBORDINATED = __TYPE_INIT + 18
     TYPE_CARDINAL = __TYPE_INIT + 19
     TYPE_ORDINAL =__TYPE_INIT + 20
     # --------------------------------------------------------------------------
@@ -247,13 +247,13 @@ class AbstractMorphology(object):
     ROL_ADJECTIVE = __ROL_INIT + 4
     #--------------------------------------------------------------------------
 
-    def __init__(self, forma, lema, label):
+    def __init__(self, form, lema, label):
         '''
         Constructor
         '''
-        self.__forma = forma
-        self.__lema = lema
-        self.__label = label
+        self.__form = form.strip()
+        self.__lema = lema.strip()
+        self.__label = label.strip()
     # --------------------------------------------------------------------------
 
     def __str__(self):
@@ -315,7 +315,7 @@ class AbstractMorphology(object):
         """
         ' Returns the type of the word based on the Eagles label; e.g.:
         '    Eagles Label: AQ0CP00
-        '    Category:     TYPE_CALIFICATIVO
+        '    Category:     TYPE_CALIFICATIVE
         '
         ' If the category cannot be determined then TYPE_UNKNOWN is returned.
         ' return Integer
@@ -405,7 +405,7 @@ class AbstractMorphology(object):
         """
         ' Returns the type of the word based on the Eagles label; e.g.:
         '    Eagles Label: AQ0CP00
-        '    Category:     TYPE_CALIFICATIVO
+        '    Category:     TYPE_CALIFICATIVE
         '
         ' If the category cannot be determined then TYPE_UNKNOWN is returned.
         ' return Integer
@@ -445,13 +445,13 @@ class AbbreviationMorphology(AbstractMorphology):
         """
         ' Returns the category of the word based on the Eagles label; e.g.:
         '    Eagles Label: Y0000
-        '    Category:     CAT_ABBREVIATIONS
+        '    Category:     CAT_ABBREVIATION
         '
         ' CAT_ADPOSITION is returned all the time since AbbreviationMorphology
         '  class is meant to model abbreviations only. If the label is not 
         ' an abbreviation please do not use this class.
         """
-        return self.CAT_ABBREVIATIONS
+        return self.CAT_ABBREVIATION
     #--------------------------------------------------------------------------
 
 
@@ -489,7 +489,7 @@ class AdjectiveMorphology(AbstractMorphology):
         ' return Integer
         """
         if self.get_eagles_label()[self.__IDX_CATEGORY] == 'A':
-            return self.CAT_ADJETIVO
+            return self.CAT_ADJECTIVE
         else:
             return self.CAT_UNKNOWN
     # --------------------------------------------------------------------------
@@ -498,13 +498,13 @@ class AdjectiveMorphology(AbstractMorphology):
         """
         ' Returns the type of the word based on the Eagles label; e.g.:
         '    Eagles Label: AQ0CP00
-        '    Category:     TYPE_CALIFICATIVO
+        '    Category:     TYPE_CALIFICATIVE
         '
         ' If the category cannot be determined then TYPE_UNKNOWN is returned.
         ' return Integer
         """
         if self.get_eagles_label()[self.__IDX_TYPE] == 'Q':
-            return self.TYPE_CALIFICATIVO
+            return self.TYPE_CALIFICATIVE
         else:
             return self.TYPE_UNKNOWN
     # --------------------------------------------------------------------------
@@ -513,7 +513,7 @@ class AdjectiveMorphology(AbstractMorphology):
         """
         ' Returns the type of the word based on the Eagles label; e.g.:
         '    Eagles Label: AQ0CP00
-        '    Category:     TYPE_CALIFICATIVO
+        '    Category:     TYPE_CALIFICATIVE
         '
         ' If the category cannot be determined then TYPE_UNKNOWN is returned.
         ' return Integer
@@ -622,7 +622,7 @@ class AdverbMorphology(AbstractMorphology):
         ' return Integer
         """
         if self.get_eagles_label()[self.__IDX_CATEGORY] == 'R':
-            return self.CAT_ADVERBIO
+            return self.CAT_ADVERB
         else:
             return self.CAT_UNKNOWN
     # --------------------------------------------------------------------------
@@ -631,7 +631,7 @@ class AdverbMorphology(AbstractMorphology):
         """
         ' Returns the type of the word based on the Eagles label; e.g.:
         '    Eagles Label: AQ0CP00
-        '    Category:     TYPE_CALIFICATIVO
+        '    Category:     TYPE_CALIFICATIVE
         '
         ' If the category cannot be determined then TYPE_UNKNOWN is returned.
         ' return Integer
@@ -675,7 +675,7 @@ class ArticleMorphology(AbstractMorphology):
         ' return Integer
         """
         if self.get_eagles_label()[self.__IDX_CATEGORY] == 'T':
-            return self.CAT_ARTICULOS
+            return self.CAT_ARTICLE
         else:
             return self.CAT_UNKNOWN
     # --------------------------------------------------------------------------
@@ -684,13 +684,13 @@ class ArticleMorphology(AbstractMorphology):
         """
         ' Returns the type of the word based on the Eagles label; e.g.:
         '    Eagles Label: AQ0CP00
-        '    Category:     TYPE_CALIFICATIVO
+        '    Category:     TYPE_CALIFICATIVE
         '
         ' If the category cannot be determined then TYPE_UNKNOWN is returned.
         ' return Integer
         """
         if self.get_eagles_label()[self.__IDX_TYPE] == 'D':
-            return self.TYPE_DEFINIDO
+            return self.TYPE_DEFINED
         else:
             return self.TYPE_UNKNOWN
     # --------------------------------------------------------------------------
@@ -777,7 +777,7 @@ class ConjunctionMorphology(AbstractMorphology):
         ' return Integer
         """
         if self.get_eagles_label()[self.__IDX_CATEGORY] == 'C':
-            return self.CAT_CONJUNCIONES
+            return self.CAT_CONJUNCTION
         else:
             return self.CAT_UNKNOWN
     # --------------------------------------------------------------------------
@@ -786,15 +786,15 @@ class ConjunctionMorphology(AbstractMorphology):
         """
         ' Returns the type of the word based on the Eagles label; e.g.:
         '    Eagles Label: AQ0CP00
-        '    Category:     TYPE_CALIFICATIVO
+        '    Category:     TYPE_CALIFICATIVE
         '
         ' If the category cannot be determined then TYPE_UNKNOWN is returned.
         ' return Integer
         """
         if self.get_eagles_label()[self.__IDX_TYPE] == 'C':
-            return self.TYPE_COORDINADA
+            return self.TYPE_COORDINATED
         elif self.get_eagles_label()[self.__IDX_TYPE] == 'S':
-            return self.TYPE_SUBORDINADA
+            return self.TYPE_SUBORDINATED
         else:
             return self.TYPE_UNKNOWN
     # --------------------------------------------------------------------------
@@ -834,7 +834,7 @@ class DeterminantMorphology(AbstractMorphology):
         ' return Integer
         """
         if self.get_eagles_label()[self.__IDX_CATEGORY] == 'D':
-            return self.CAT_DETERMINANTES
+            return self.CAT_DETERMINANT
         else:
             return self.CAT_UNKNOWN
     # --------------------------------------------------------------------------
@@ -843,19 +843,19 @@ class DeterminantMorphology(AbstractMorphology):
         """
         ' Returns the type of the word based on the Eagles label; e.g.:
         '    Eagles Label: AQ0CP00
-        '    Category:     TYPE_CALIFICATIVO
+        '    Category:     TYPE_CALIFICATIVE
         '
         ' If the category cannot be determined then TYPE_UNKNOWN is returned.
         ' return Integer
         """
         if self.get_eagles_label()[self.__IDX_TYPE] == 'D':
-            return self.TYPE_DEMOSTRATIVO
+            return self.TYPE_DEMOSTRATIVE
         elif self.get_eagles_label()[self.__IDX_TYPE] == 'P':
-            return self.TYPE_POSESIVO
+            return self.TYPE_POSESIVE
         elif self.get_eagles_label()[self.__IDX_TYPE] == 'T':
-            return self.TYPE_INTERROGATIVO
+            return self.TYPE_INTERROGATIVE
         elif self.get_eagles_label()[self.__IDX_TYPE] == 'E':
-            return self.TYPE_EXCLAMATIVO
+            return self.TYPE_EXCLAMATIVE
         elif self.get_eagles_label()[self.__IDX_TYPE] == 'I':
             return self.TYPE_INDEFINIDO
         else:
@@ -866,7 +866,7 @@ class DeterminantMorphology(AbstractMorphology):
         """
         ' Returns the type of the word based on the Eagles label; e.g.:
         '    Eagles Label: AQ0CP00
-        '    Category:     TYPE_CALIFICATIVO
+        '    Category:     TYPE_CALIFICATIVE
         '
         ' If the category cannot be determined then TYPE_UNKNOWN is returned.
         ' return Integer
@@ -1018,7 +1018,7 @@ class NameMorphology(AbstractMorphology):
         ' return Integer
         """
         if self.get_eagles_label()[self.__IDX_CATEGORY] == 'N':
-            return self.CAT_NOMBRES
+            return self.CAT_NAME
         else:
             return self.CAT_UNKNOWN
     # --------------------------------------------------------------------------
@@ -1027,15 +1027,15 @@ class NameMorphology(AbstractMorphology):
         """
         ' Returns the type of the word based on the Eagles label; e.g.:
         '    Eagles Label: AQ0CP00
-        '    Category:     TYPE_CALIFICATIVO
+        '    Category:     TYPE_CALIFICATIVE
         '
         ' If the category cannot be determined then TYPE_UNKNOWN is returned.
         ' return Integer
         """
         if self.get_eagles_label()[self.__IDX_TYPE] == 'C':
-            return self.TYPE_COMUN
+            return self.TYPE_COMMON
         elif self.get_eagles_label()[self.__IDX_TYPE] == 'P':
-            return self.TYPE_PROPIO
+            return self.TYPE_PROPER
         else:
             return self.TYPE_UNKNOWN
     # --------------------------------------------------------------------------
@@ -1112,7 +1112,7 @@ class NameMorphology(AbstractMorphology):
         """
         ' Returns the type of the word based on the Eagles label; e.g.:
         '    Eagles Label: AQ0CP00
-        '    Category:     TYPE_CALIFICATIVO
+        '    Category:     TYPE_CALIFICATIVE
         '
         ' If the category cannot be determined then TYPE_UNKNOWN is returned.
         ' return Integer
@@ -1165,7 +1165,7 @@ class NumeralMorphology(AbstractMorphology):
         '  class is meant to model numerals only. If the label is not 
         ' an abbreviation please do not use this class.
         """
-        return self.CAT_NUMERALS
+        return self.CAT_NUMERAL
     #--------------------------------------------------------------------------
     
     
@@ -1354,7 +1354,7 @@ class PrepositionMorphology(AbstractMorphology):
         """
         ' Returns the type of the word based on the Eagles label; e.g.:
         '    Eagles Label: AQ0CP00
-        '    Category:     TYPE_CALIFICATIVO
+        '    Category:     TYPE_CALIFICATIVE
         '
         ' If the category cannot be determined then TYPE_UNKNOWN is returned.
         ' return Integer
@@ -1459,7 +1459,7 @@ class PronounMorphology(AbstractMorphology):
         ' return Integer
         """
         if self.get_eagles_label()[self.__IDX_CATEGORY] == 'P':
-            return self.CAT_PRONOMBRES
+            return self.CAT_PRONOUN
         else:
             return self.CAT_UNKNOWN
     # --------------------------------------------------------------------------
@@ -1468,7 +1468,7 @@ class PronounMorphology(AbstractMorphology):
         """
         ' Returns the type of the word based on the Eagles label; e.g.:
         '    Eagles Label: AQ0CP00
-        '    Category:     TYPE_CALIFICATIVO
+        '    Category:     TYPE_CALIFICATIVE
         '
         ' If the category cannot be determined then TYPE_UNKNOWN is returned.
         ' return Integer
@@ -1476,15 +1476,15 @@ class PronounMorphology(AbstractMorphology):
         if self.get_eagles_label()[self.__IDX_TYPE] == 'P':
             return self.TYPE_PERSONAL
         elif self.get_eagles_label()[self.__IDX_TYPE] == 'D':
-            return self.TYPE_DEMOSTRATIVO
+            return self.TYPE_DEMOSTRATIVE
         elif self.get_eagles_label()[self.__IDX_TYPE] == 'X':
-            return self.TYPE_POSESIVO
+            return self.TYPE_POSESIVE
         elif self.get_eagles_label()[self.__IDX_TYPE] == 'I':
             return self.TYPE_INDEFINIDO
         elif self.get_eagles_label()[self.__IDX_TYPE] == 'T':
-            return self.TYPE_INTERROGATIVO
+            return self.TYPE_INTERROGATIVE
         elif self.get_eagles_label()[self.__IDX_TYPE] == 'R':
-            return self.TYPE_RELATIVO
+            return self.TYPE_RELATIVE
         else:
             return self.TYPE_UNKNOWN
     # --------------------------------------------------------------------------
@@ -1493,7 +1493,7 @@ class PronounMorphology(AbstractMorphology):
         """
         ' Returns the type of the word based on the Eagles label; e.g.:
         '    Eagles Label: AQ0CP00
-        '    Category:     TYPE_CALIFICATIVO
+        '    Category:     TYPE_CALIFICATIVE
         '
         ' If the category cannot be determined then TYPE_UNKNOWN is returned.
         ' return Integer
@@ -1635,7 +1635,7 @@ class PunctuationMarkMorphology(AbstractMorphology):
         ' return Integer
         """
         if self.get_eagles_label()[self.__IDX_CATEGORY] == 'F':
-            return self.CAT_PUNTUACION
+            return self.CAT_PUNCTUATION
         else:
             return self.CAT_UNKNOWN
     # --------------------------------------------------------------------------
@@ -1675,7 +1675,7 @@ class VerbMorphology(AbstractMorphology):
         ' return Integer
         """
         if self.get_eagles_label()[self.__IDX_CATEGORY] == 'V':
-            return self.CAT_VERBOS
+            return self.CAT_VERB
         else:
             return self.CAT_UNKNOWN
     # --------------------------------------------------------------------------
@@ -1684,7 +1684,7 @@ class VerbMorphology(AbstractMorphology):
         """
         ' Returns the type of the word based on the Eagles label; e.g.:
         '    Eagles Label: AQ0CP00
-        '    Category:     TYPE_CALIFICATIVO
+        '    Category:     TYPE_CALIFICATIVE
         '
         ' If the category cannot be determined then TYPE_UNKNOWN is returned.
         ' return Integer
@@ -1728,7 +1728,7 @@ class VerbMorphology(AbstractMorphology):
         """
         ' Returns the type of the word based on the Eagles label; e.g.:
         '    Eagles Label: AQ0CP00
-        '    Category:     TYPE_CALIFICATIVO
+        '    Category:     TYPE_CALIFICATIVE
         '
         ' If the category cannot be determined then TYPE_UNKNOWN is returned.
         ' return Integer
@@ -1749,7 +1749,7 @@ class VerbMorphology(AbstractMorphology):
         """
         ' Returns the type of the word based on the Eagles label; e.g.:
         '    Eagles Label: AQ0CP00
-        '    Category:     TYPE_CALIFICATIVO
+        '    Category:     TYPE_CALIFICATIVE
         '
         ' If the category cannot be determined then TYPE_UNKNOWN is returned.
         ' return Integer
