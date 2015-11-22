@@ -5,12 +5,12 @@ Created on 21/11/2015
 @author: axelg
 '''
 from util.eagles import AbstractMorphology
-from mosyn import MorphologicalDictionary, AnalysisManager
+from mosyn import mosyn
 
 def test_example():
-    dictionary = MorphologicalDictionary("../mosyn/dict/spanish_dict.csv")
+    dictionary = mosyn.MorphologicalDictionary("../mosyn/dict/spanish_dict.csv")
     dictionary.load()
-    manager = AnalysisManager( dictionary, None, None )
+    manager = mosyn.AnalysisManager( dictionary, None, None )
     
     pdata = manager.parse_string_to_eagles( u"La PUEDO escribir los versos más tristes esta noche." )
     

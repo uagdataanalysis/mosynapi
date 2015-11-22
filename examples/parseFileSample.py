@@ -5,25 +5,25 @@ Created on 21/11/2015
 @author: axelg
 '''
 from util.eagles import AbstractMorphology
-from mosyn import MorphologicalDictionary, AnalysisManager
+from mosyn import mosyn
 
-def test_example():
-    dictionary = MorphologicalDictionary("../mosyn/dict/spanish_dict.csv")
+def test_example_string():
+    dictionary = mosyn.MorphologicalDictionary("../mosyn/dict/spanish_dict.csv")
     dictionary.load()
-    manager = AnalysisManager( dictionary, None, None )
+    manager = mosyn.AnalysisManager( dictionary, None, None )
     
     pdata = manager.parse_file_to_eagles( "Poema20.txt" )
     
-    print("Processing: <Current dir>/Poema20.txt.")
-    print(".............................................................")
+    print "Processing: Poema20.txt."
+    print "............................................................."
     for labels in pdata:
-        print( "\"", labels[0].get_form(), "\" ( lema:", labels[0].get_lema(), ")")
+        print "\"", labels[0].get_form(), "\" ( lema:", labels[0].get_lema(), ")"
         for label in labels:
-            print( "\t", label.get_eagles_label(), "->",)
+            print "\t", label.get_eagles_label(), "->",
             describe( label )
-            print("")
-        print("----------------------------------------------------")
-        print("")
+            print ""
+        print "----------------------------------------------------"
+        print ""
 
 
 
@@ -95,4 +95,4 @@ def get_category_name( eagles ):
 
 
 if __name__ == '__main__':
-    test_example()
+    test_example_string()
