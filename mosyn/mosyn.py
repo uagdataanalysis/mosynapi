@@ -91,6 +91,74 @@ class AnalysisManager:
                     self.output_manager.write(result)
 
         self.on_completed.fire(self)
+        
+    
+    def parse_string_to_eagles(self, value):
+        """ Use this method to parse the text passed as parameter.
+        
+        :param value: Text written in natural language (spanish).
+           
+        :returns: a list of AbstractMorphology lists:
+            [ [AbstractMorph11, AbstractMorph12,...], 
+              [AbstractMorph11, AbstractMorph12,...],
+              ...,
+              [AbstractMorphK1, AbstractMorphK2,...] ]
+            
+        Each row in the main list has all the possible eagles interpretations
+        that particular word may have. They all are
+        provided to the application.
+        """
+        eaglesLabels = []
+        from util import eagles
+        
+        for data in self.analysis.analyze_text(value):
+            form = data[0]
+            items = []
+            for item in data[1]:
+                labels = item[1].split(' ')
+                items.append(eagles.MorphologyFactory.create_morphology(form, item[0], labels[0]))
+                
+            eaglesLabels.append(items)
+            
+                    
+        return eaglesLabels
+    
+    
+    def parse_file_to_eagles(self, fileName):
+        """ Use this method to parse a file. 
+        
+        The file name is passed as parameter. It is expected to have text 
+        written in Spanish.
+        
+        :param fileName: The file name (including path).
+           
+        :returns: a list of AbstractMorphology lists:
+            [ [AbstractMorph11, AbstractMorph12,...], 
+              [AbstractMorph11, AbstractMorph12,...],
+              ...,
+              [AbstractMorphK1, AbstractMorphK2,...] ]
+            
+        Each row in the main list has all the possible eagles interpretations
+        that particular word may have. They all are
+        provided to the application.
+        """
+        inputf = FileInput( fileName )
+        eaglesLabels = []
+        from util import eagles
+        
+        with inputf:
+            for data in inputf.read():
+                for line in self.analysis.analyze_text(data):
+                    form = line[0]
+                    items = []
+                    for item in line[1]:
+                        labels = item[1].split(' ')
+                        items.append(eagles.MorphologyFactory.create_morphology(form, item[0], labels[0]))
+                
+                    eaglesLabels.append(items)
+            
+                    
+        return eaglesLabels
 
 
 class MorphologicalDictionary:
