@@ -11,3 +11,10 @@ python:
 script: 
  - cd mosyn
  - python -m pytest ../test
+ - ./mosyn.py -h
+ - ./mosyn.py -in ../test/test.txt
+ - ./mosyn.py -in ../test/test.txt -out parsed.txt
+ - cd ../examples
+ - export PYTHONPATH=../mosyn
+ - parseStringSample.py
+ - parseFileSample.py
