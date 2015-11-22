@@ -17,13 +17,12 @@ install:
 # - sudo pip install -r requirements.txt
 # command to run tests
 script: 
-# - cd mosyn
-# - python -m pytest ../test
- - python -m pytest test
+ - cd mosyn
+ - python -m pytest ../test
  - ./mosyn/mosyn.py -h
  - ./mosyn/mosyn.py -in test/test.txt
  - ./mosyn/mosyn.py -in test/test.txt -out parsed.txt
  - cd examples
-# - export PYTHONPATH=../mosyn
+ - export PYTHONPATH=../mosyn
  - python parseStringSample.py
  - python parseFileSample.py
