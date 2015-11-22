@@ -8,7 +8,7 @@ python:
 before_install:
  - pip install --upgrade setuptools
  - pip install --upgrade pip
- - pip install nltk
+ - sudo pip install nltk
 # command to install dependencies
 install:
 # - python setup.py sdist
