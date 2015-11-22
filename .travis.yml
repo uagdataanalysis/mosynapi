@@ -10,7 +10,9 @@ install:
  - pip install --upgrade setuptools
  - pip install --upgrade pip
  - pip install .
- - pip install -r requires.txt
+ - ls -la
+ - ls -la *
+ - pip install -r requirements.txt
 # command to run tests
 script: 
  - cd mosyn
