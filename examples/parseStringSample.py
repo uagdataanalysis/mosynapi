@@ -14,16 +14,16 @@ def test_example():
     
     pdata = manager.parse_string_to_eagles( u"La PUEDO escribir los versos más tristes esta noche." )
     
-    print "Processing: PUEDO escribir los versos más tristes esta noche."
-    print "............................................................."
+    print("Processing: PUEDO escribir los versos más tristes esta noche.")
+    print(".............................................................")
     for labels in pdata:
         print "\"", labels[0].get_form(), "\" ( lema:", labels[0].get_lema(), ")"
         for label in labels:
             print "\t", label.get_eagles_label(), "->",
             describe( label )
             print ""
-        print "----------------------------------------------------"
-        print ""
+        print("----------------------------------------------------")
+        print("")
 
 
 

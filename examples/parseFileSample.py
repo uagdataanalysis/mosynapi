@@ -14,16 +14,16 @@ def test_example():
     
     pdata = manager.parse_file_to_eagles( "Poema20.txt" )
     
-    print "Processing: <Current dir>/Poema20.txt."
-    print "............................................................."
+    print("Processing: <Current dir>/Poema20.txt.")
+    print(".............................................................")
     for labels in pdata:
-        print "\"", labels[0].get_form(), "\" ( lema:", labels[0].get_lema(), ")"
+        print( "\"", labels[0].get_form(), "\" ( lema:", labels[0].get_lema(), ")")
         for label in labels:
-            print "\t", label.get_eagles_label(), "->",
+            print( "\t", label.get_eagles_label(), "->",)
             describe( label )
-            print ""
-        print "----------------------------------------------------"
-        print ""
+            print("")
+        print("----------------------------------------------------")
+        print("")
 
 
 
