@@ -9,12 +9,12 @@ python:
 install:
  - sudo pip install --upgrade setuptools
  - sudo pip install --upgrade pip
- - pip install --user nltk
+ - sudo pip install nltk
 # - python setup.py sdist
 # - ls -la
  - ls -la *
- - pip install --user .
- - pip install --user -r requirements.txt
+ - sudo pip install -e .
+# - pip install --user -r requirements.txt
 # command to run tests
 script: 
  - cd mosyn
@@ -22,7 +22,7 @@ script:
  - ./mosyn.py -h
  - ./mosyn.py -in test/test.txt
  - ./mosyn.py -in test/test.txt -out parsed.txt
- - cd ../examples
- - export PYTHONPATH=../mosyn
+# - cd ../examples
+# - export PYTHONPATH=../mosyn
 # - python parseStringSample.py
 # - python parseFileSample.py
