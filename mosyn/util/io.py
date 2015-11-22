@@ -116,8 +116,8 @@ class SystemInput(Input):
         """ Read a value from the standard input.
         :return: An iterable collection of text lines read from the standard input.
         """
-        for line in sys.stdin:
-            yield line
+        
+        yield raw_input( "% " )
 
 
 class SystemOutput(Output):
