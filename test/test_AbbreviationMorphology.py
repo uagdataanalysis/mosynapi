@@ -24,9 +24,9 @@ class Test(unittest.TestCase):
         result = preposicion.get_category()
         
         self.assertEqual( 
-                         AbstractMorphology.CAT_ABBREVIATIONS,
+                         AbstractMorphology.CAT_ABBREVIATION,
                          result, 
-                         "CAT_ABBREVIATIONS is expected but obtained: " + 
+                         "CAT_ABBREVIATION is expected but obtained: " + 
                              str(result) )
     #--------------------------------------------------------------------------
 
@@ -41,9 +41,9 @@ class Test(unittest.TestCase):
         result = preposicion.get_category()
         
         self.assertEqual( 
-                         AbstractMorphology.CAT_ABBREVIATIONS, 
+                         AbstractMorphology.CAT_ABBREVIATION, 
                          result, 
-                         "CAT_ABBREVIATIONS is expected but obtained: " + 
+                         "CAT_ABBREVIATION is expected but obtained: " + 
                              str(result) )
     #--------------------------------------------------------------------------
     #--------------------------------------------------------------------------

@@ -24,16 +24,16 @@ class Test(unittest.TestCase):
         result = numeral.get_category()
         
         self.assertEqual( 
-                         AbstractMorphology.CAT_NUMERALS, 
+                         AbstractMorphology.CAT_NUMERAL, 
                          result, 
-                         "CAT_NUMERALS is expected but obtained: " + 
+                         "CAT_NUMERAL is expected but obtained: " + 
                              str(result) )
     #--------------------------------------------------------------------------
 
 
     def testCategoryInvalid(self):
         """ Test an invalid Eagles label"""
-        # CAT_NUMERALS is expected here since NumeralMorphology class is
+        # CAT_NUMERAL is expected here since NumeralMorphology class is
         # meant to model numerals only. Under that assumption there is no
         # need to add logic to handle non-numeral labels. If label is not 
         # a numeral please do not use NumeralMorphology class.
@@ -41,9 +41,9 @@ class Test(unittest.TestCase):
         result = numeral.get_category()
         
         self.assertEqual( 
-                         AbstractMorphology.CAT_NUMERALS, 
+                         AbstractMorphology.CAT_NUMERAL, 
                          result, 
-                         "CAT_NUMERALS is expected but obtained: " + 
+                         "CAT_NUMERAL is expected but obtained: " + 
                              str(result) )
     #--------------------------------------------------------------------------
     #--------------------------------------------------------------------------
