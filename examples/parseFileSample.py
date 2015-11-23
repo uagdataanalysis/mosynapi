@@ -7,12 +7,13 @@ Created on 21/11/2015
 from util.eagles import AbstractMorphology
 from mosyn import mosyn
 
+
 def test_example_string():
     dictionary = mosyn.MorphologicalDictionary("../mosyn/dict/spanish_dict.csv")
     dictionary.load()
-    manager = mosyn.AnalysisManager( dictionary, None, None )
+    manager = mosyn.AnalysisManager(dictionary, None, None)
     
-    pdata = manager.parse_file_to_eagles( "Poema20.txt" )
+    pdata = manager.parse_file_to_eagles("Poema20.txt")
     
     print "Processing: Poema20.txt."
     print "............................................................."
@@ -20,14 +21,13 @@ def test_example_string():
         print "\"", labels[0].get_form(), "\" ( lema:", labels[0].get_lema(), ")"
         for label in labels:
             print "\t", label.get_eagles_label(), "->",
-            describe( label )
+            describe(label)
             print ""
         print "----------------------------------------------------"
         print ""
 
 
-
-def describe( eagles ):
+def describe(eagles):
     catname = get_category_name(eagles)
     
     aux = eagles.get_number()
@@ -57,8 +57,7 @@ def describe( eagles ):
         print "female", catname,
     else:
         print catname, "without gender",
-        
-    
+
 
 def get_category_name( eagles ):
     aux = eagles.get_category()
@@ -91,8 +90,6 @@ def get_category_name( eagles ):
         return "verb"
     else:
         return "unknown"
-
-
 
 if __name__ == '__main__':
     test_example_string()

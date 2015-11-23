@@ -9,16 +9,18 @@ class Install(_install):
         nltk.download("punkt")
 
 setup(
-    name='mosyn',
-    version='1.0.3',
-    author='asaelt',
-    author_email='art.torres.alv@gmail.com',
-    url='https://github.com/uagdataanalysis/mosynapi',
-    packages=find_packages(),
-    package_data={'mosyn': ['dict/*.csv']},
-    description='A morphological analysis tool.',
-    cmdclass={'install': Install},
-    install_requires=[
+    name = 'mosyn',
+    packages = find_packages(),
+    version = '1.0.4',
+    description = 'A morphological dictionary tool.',
+    author = 'uagdataanalysis',
+    author_email = 'uagdataanalysis@gmail.com',
+    url = 'https://github.com/uagdataanalysis/mosynapi',
+    download_url = "",
+    package_data = {'mosyn': ['dict/*.csv']},
+    keywords = "",
+    cmdclass = {'install': Install},
+    install_requires = [
         'nltk>=3.0'
     ]
 )

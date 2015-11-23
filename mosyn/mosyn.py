@@ -2,7 +2,7 @@
 # -*- coding: iso-8859-15 -*-
 
 # Created on 07/10/2015
-# Modified on 20/10/2015
+# Modified on 22/11/2015
 # Modified by asaelt
 #
 # Source:
@@ -22,7 +22,7 @@ from util.io import SystemInput
 from util.io import SystemOutput
 from util.events import EventHook
 
-__version__ = '1.0.3'
+__version__ = '1.0.4'
 
 
 class MorphologicalAnalysis:
@@ -62,7 +62,7 @@ class MorphologicalAnalysis:
         self.on_completed.fire(self)
 
 
-class AnalysisManager:
+class AnalysisProcess:
     """ Provides methods to perform automatic morphological analysis of a set of inputs.
     """
 
@@ -91,8 +91,18 @@ class AnalysisManager:
                     self.output_manager.write(result)
 
         self.on_completed.fire(self)
-        
-    
+
+
+class AnalysisManager:
+    """ Provides methods to perform automatic morphological analysis of a set of inputs.
+    """
+
+    def __init__(self, dictionary):
+        """ Initializes a new instance of AnalysisManager.
+        :param dictionary: A morphological dictionary.
+        """
+        self.analysis = MorphologicalAnalysis(dictionary)
+
     def parse_string_to_eagles(self, value):
         """ Use this method to parse the text passed as parameter.
         
@@ -119,18 +129,16 @@ class AnalysisManager:
                 items.append(eagles.MorphologyFactory.create_morphology(form, item[0], labels[0]))
                 
             eaglesLabels.append(items)
-            
-                    
+
         return eaglesLabels
-    
-    
-    def parse_file_to_eagles(self, fileName):
+
+    def parse_file_to_eagles(self, filename):
         """ Use this method to parse a file. 
         
         The file name is passed as parameter. It is expected to have text 
         written in Spanish.
         
-        :param fileName: The file name (including path).
+        :param filename: The file name (including path).
            
         :returns: a list of AbstractMorphology lists:
             [ [AbstractMorph11, AbstractMorph12,...], 
@@ -142,12 +150,12 @@ class AnalysisManager:
         that particular word may have. They all are
         provided to the application.
         """
-        inputf = FileInput( fileName )
-        eaglesLabels = []
+        input_file = FileInput(filename)
+        eagles_labels = []
         from util import eagles
         
-        with inputf:
-            for data in inputf.read():
+        with input_file:
+            for data in input_file.read():
                 for line in self.analysis.analyze_text(data):
                     form = line[0]
                     items = []
@@ -155,10 +163,9 @@ class AnalysisManager:
                         labels = item[1].split(' ')
                         items.append(eagles.MorphologyFactory.create_morphology(form, item[0], labels[0]))
                 
-                    eaglesLabels.append(items)
-            
-                    
-        return eaglesLabels
+                    eagles_labels.append(items)
+
+        return eagles_labels
 
 
 class MorphologicalDictionary:
@@ -337,13 +344,13 @@ def _execute():
     dictionary = MorphologicalDictionary(default_dictionary)
     dictionary.load()
 
-    manager = AnalysisManager(
+    process = AnalysisProcess(
         dictionary,
         input_method,
         output_method
     )
 
-    manager.start_analysis()
+    process.start_analysis()
 
 
 def main(argv):
