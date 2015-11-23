@@ -16,9 +16,9 @@ setup(
     author = 'uagdataanalysis',
     author_email = 'uagdataanalysis@gmail.com',
     url = 'https://github.com/uagdataanalysis/mosynapi',
-    download_url = "",
+    download_url = "https://github.com/uagdataanalysis/mosynapi/tarball/1.0.4",
     package_data = {'mosyn': ['dict/*.csv']},
-    keywords = "",
+    keywords = ['dictionary' , 'morphological', 'analysis'],
     cmdclass = {'install': Install},
     install_requires = [
         'nltk>=3.0'
