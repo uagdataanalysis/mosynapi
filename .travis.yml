@@ -13,7 +13,7 @@ install:
  - sudo pip install nltk
  - python setup.py sdist
  - cd dist
- - pip install --user mosyn-*.tar.gz
+ - sudo pip install mosyn-*.tar.gz
  - cd ..
 # command to run tests
 script: 
@@ -25,5 +25,6 @@ script:
  - cd ../examples
  -  if [[ $TRAVIS_PYTHON_VERSION == 2* ]]; then cd python2.x; fi
  -  if [[ $TRAVIS_PYTHON_VERSION == 3* ]]; then cd python3.x; fi
+ - pwd
  - python parseStringSample.py
  - python parseFileSample.py
