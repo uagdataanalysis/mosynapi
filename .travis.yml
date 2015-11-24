@@ -26,5 +26,6 @@ script:
  -  if [[ $TRAVIS_PYTHON_VERSION == 2* ]]; then cd python2.x; fi
  -  if [[ $TRAVIS_PYTHON_VERSION == 3* ]]; then cd python3.x; fi
  - pwd
+ - export PYTHONPATH=../../mosyn
  - python parseStringSample.py
  - python parseFileSample.py
