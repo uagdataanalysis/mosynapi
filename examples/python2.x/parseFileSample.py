@@ -22,8 +22,8 @@ to specify a new dictionary or loading it again.
 
 Thanks to the Universidad Autonoma de Guadalajara for providing the dictionary 
 used in this example.'''
-from mosyn import mosyn
-from mosyn.util.eagles import AbstractMorphology
+import mosyn
+from mosyn.util import AbstractMorphology
 
 
 def analyse():
@@ -34,16 +34,16 @@ def analyse():
     can be done."""
     dictionary = mosyn.MorphologicalDictionary("../../mosyn/dict/spanish_dict.csv")
     dictionary.load()
-    manager = mosyn.AnalysisManager(dictionary, None, None)
+    manager = mosyn.AnalysisManager(dictionary)
     
-    pdata = manager.parse_file_to_eagles("../Poema20.txt")
+    processed_data = manager.parse_file_to_eagles("../Poema20.txt")
     
     print "Processing: Poema20.txt."
     print "............................................................."
     #
     # Below, each one of the eagles labels are processed. There is an element
     # generated for each word...
-    for labels in pdata:
+    for labels in processed_data:
         print "\"", labels[0].get_form(), "\" ( lema:", labels[0].get_lema(), ")"
         # ... and for each word more than one eagles label may be generated 
         # depending on how many usages that given word may have.

@@ -1,12 +1,4 @@
 # -*- coding: iso-8859-15 -*-
-# Mosyn API (c) by UAG Data Analysis Group of Universidad Autonoma de Guadalajara
-#
-# Mosyn API is licensed under a
-# Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
-# 
-# You should have received a copy of the license along with this
-# work. If not, see <http://creativecommons.org/licenses/by-nc-sa/4.0/>. 
-#
 '''
 Created on 21/11/2015
 
@@ -26,8 +18,8 @@ many times as required without having to specify a new dictionary or loading it.
 Thanks to the Universidad Autonoma de Guadalajara for providing the dictionary 
 used in this example.
 '''
-from mosyn import mosyn
-from mosyn.util.eagles import AbstractMorphology
+import mosyn
+from mosyn.util import AbstractMorphology
 
 def analyse():
     """Use Mosyn API to perform the morphosyntactic analysis on a text written in Spanish 
@@ -37,16 +29,16 @@ def analyse():
     can be done."""
     dictionary = mosyn.MorphologicalDictionary("../../mosyn/dict/spanish_dict.csv")
     dictionary.load()
-    manager = mosyn.AnalysisManager( dictionary, None, None )
+    manager = mosyn.AnalysisManager(dictionary)
     
-    pdata = manager.parse_string_to_eagles( u"PUEDO escribir los versos más tristes esta noche." )
+    processed_data = manager.parse_string_to_eagles( u"PUEDO escribir los versos más tristes esta noche." )
     
     print "Processing: PUEDO escribir los versos más tristes esta noche."
     print "............................................................."
     #
     # Below, each one of the eagles labels are processed. There is an element
     # generated for each word...
-    for labels in pdata:
+    for labels in processed_data:
         print "\"", labels[0].get_form(), "\" ( lema:", labels[0].get_lema(), ")"
         # ... and for each word more than one eagles label may be generated 
         # depending on how many usages that given word may have.
