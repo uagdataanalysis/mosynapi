@@ -1,33 +1,69 @@
 # -*- coding: iso-8859-15 -*-
+# Mosyn API (c) by UAG Data Analysis Group of Universidad Autonoma de Guadalajara
+#
+# Mosyn API is licensed under a
+# Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License.
+# 
+# You should have received a copy of the license along with this
+# work. If not, see <http://creativecommons.org/licenses/by-nc-sa/4.0/>. 
+#
 '''
 Created on 21/11/2015
 
-@author: axelg
-'''
-from util.eagles import AbstractMorphology
-from mosyn import mosyn
+@author: Axel Garcia
 
-def test_example():
-    dictionary = mosyn.MorphologicalDictionary("../mosyn/dict/spanish_dict.csv")
+Version for Python versions 2.x (e.g. 2.6, 2.7)
+
+This is an example of how the Mosyn API can be used to parse text generated in 
+a program; i.e. not from a file. Mosyn takes the Spanish corpus from the
+dictionary specified by the "MorphologicalDictionary" class which takes a .csv
+file as argument; it is possible to use a different dictionary for the processing.
+
+After specifying and loading the dictionary, this example uses "parse_string_to_eagles" 
+function to do the actual morphosyntactic analysis. That function can be used as 
+many times as required without having to specify a new dictionary or loading it.
+
+Thanks to the Universidad Autonoma de Guadalajara for providing the dictionary 
+used in this example.
+'''
+from mosyn import mosyn
+from mosyn.util.eagles import AbstractMorphology
+
+def analyse():
+    """Use Mosyn API to perform the morphosyntactic analysis on a text written in Spanish 
+    which is contained in a string.
+    
+    This method will print to the screen an example of the morphosyntactic analysis that
+    can be done."""
+    dictionary = mosyn.MorphologicalDictionary("../../mosyn/dict/spanish_dict.csv")
     dictionary.load()
     manager = mosyn.AnalysisManager( dictionary, None, None )
     
-    pdata = manager.parse_string_to_eagles( u"La PUEDO escribir los versos más tristes esta noche." )
+    pdata = manager.parse_string_to_eagles( u"PUEDO escribir los versos más tristes esta noche." )
     
-    print("Processing: PUEDO escribir los versos más tristes esta noche.")
-    print(".............................................................")
+    print "Processing: PUEDO escribir los versos más tristes esta noche."
+    print "............................................................."
+    #
+    # Below, each one of the eagles labels are processed. There is an element
+    # generated for each word...
     for labels in pdata:
         print "\"", labels[0].get_form(), "\" ( lema:", labels[0].get_lema(), ")"
+        # ... and for each word more than one eagles label may be generated 
+        # depending on how many usages that given word may have.
         for label in labels:
             print "\t", label.get_eagles_label(), "->",
             describe( label )
             print ""
-        print("----------------------------------------------------")
-        print("")
+        print "----------------------------------------------------"
+        print ""
 
 
 
 def describe( eagles ):
+    """Using Mosyn API the script can decide based on built in functions.
+    
+    This function uses some of the build-in functions to describe the Eagles label
+    passed as parameter."""
     catname = get_category_name(eagles)
     
     aux = eagles.get_number()
@@ -61,6 +97,10 @@ def describe( eagles ):
     
 
 def get_category_name( eagles ):
+    """Mosyn API provides standard word categories based on eagles specification. 
+    
+    See more details about the Eagles labeling and their categories in the 
+    following link: http://www.cs.upc.edu/~nlp/tools/parole-sp.html"""
     aux = eagles.get_category()
     
     if aux == AbstractMorphology.CAT_ARTICLE:
@@ -95,4 +135,4 @@ def get_category_name( eagles ):
 
 
 if __name__ == '__main__':
-    test_example()
+    analyse()

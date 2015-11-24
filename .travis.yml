@@ -5,16 +5,16 @@ python:
   - "3.2"
   - "3.3"
   - "3.4"
+  - "3.5"
 # command to install dependencies
 install:
- - sudo pip install --upgrade setuptools
- - sudo pip install --upgrade pip
- - sudo pip install nltk
-# - python setup.py sdist
-# - ls -la
- - ls -la *
- - sudo pip install -e .
-# - pip install --user -r requirements.txt
+ - pip install --upgrade setuptools
+ - pip install --upgrade pip
+ - pip install nltk
+ - python setup.py sdist
+ - cd dist
+ - pip install mosyn-*.tar.gz
+ - cd ..
 # command to run tests
 script: 
  - cd mosyn
@@ -22,7 +22,8 @@ script:
  - ./mosyn.py -h
  - ./mosyn.py -in ../test/test.txt
  - ./mosyn.py -in ../test/test.txt -out parsed.txt
-# - cd ../examples
-# - export PYTHONPATH=../mosyn
-# - python parseStringSample.py
-# - python parseFileSample.py
+ - cd ../examples
+ -  if [[ $TRAVIS_PYTHON_VERSION == 2* ]]; then cd python2.x; fi
+ -  if [[ $TRAVIS_PYTHON_VERSION == 3* ]]; then cd python3.x; fi
+ - python parseStringSample.py
+ - python parseFileSample.py

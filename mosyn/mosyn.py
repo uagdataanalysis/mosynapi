@@ -110,7 +110,7 @@ class AnalysisManager:
            
         :returns: a list of AbstractMorphology lists:
             [ [AbstractMorph11, AbstractMorph12,...], 
-              [AbstractMorph11, AbstractMorph12,...],
+              [AbstractMorph21, AbstractMorph22,...],
               ...,
               [AbstractMorphK1, AbstractMorphK2,...] ]
             
@@ -142,7 +142,7 @@ class AnalysisManager:
            
         :returns: a list of AbstractMorphology lists:
             [ [AbstractMorph11, AbstractMorph12,...], 
-              [AbstractMorph11, AbstractMorph12,...],
+              [AbstractMorph21, AbstractMorph22,...],
               ...,
               [AbstractMorphK1, AbstractMorphK2,...] ]
             
