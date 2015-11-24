@@ -8,12 +8,12 @@ python:
   - "3.5"
 # command to install dependencies
 install:
- - sudo pip install --upgrade setuptools
- - sudo pip install --upgrade pip
- - sudo pip install nltk
+ - sudo -H pip install --upgrade setuptools
+ - sudo -H pip install --upgrade pip
+ - sudo -H pip install nltk
  - python setup.py sdist
  - cd dist
- - sudo pip install mosyn-*.tar.gz
+ - sudo -H pip install mosyn-*.tar.gz
  - cd ..
 # command to run tests
 script: 
