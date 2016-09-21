@@ -32,11 +32,11 @@ def analyse():
     
     This method will print(to the screen an example of the morphosyntactic analysis that
     can be done."""
-    dictionary = mosyn.MorphologicalDictionary("../../mosyn/dict/spanish_dict.csv")
+    dictionary = mosyn.MorphologicalDictionary("../dict/spanish_dict.csv")
     dictionary.load()
     manager = mosyn.AnalysisManager(dictionary)
     
-    processed_data = manager.parse_file_to_eagles("../Poema20.txt")
+    processed_data = manager.parse_file_to_eagles("Poema20.txt")
     
     print("Processing: Poema20.txt.")
     print(".............................................................")

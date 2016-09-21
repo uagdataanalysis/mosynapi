@@ -35,7 +35,7 @@ def analyse():
     
     This method will print to the screen an example of the morphosyntactic analysis that
     can be done."""
-    dictionary = mosyn.MorphologicalDictionary("../../mosyn/dict/spanish_dict.csv")
+    dictionary = mosyn.MorphologicalDictionary("../dict/spanish_dict.csv")
     dictionary.load()
     manager = mosyn.AnalysisManager(dictionary)
     
