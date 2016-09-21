@@ -118,7 +118,7 @@ Processing: Poema20.txt.
 ```
 
 ## Contact
-Please address questions to uag-data-analysis@googlegroups.com
+Please address questions to data-analysis-uag@googlegroups.com
 Report a bug by creating an issue in the following link:
 [https://github.com/uagdataanalysis/mosynapi/issues](https://github.com/uagdataanalysis/mosynapi/issues)
 
