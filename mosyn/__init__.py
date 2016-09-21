@@ -8,6 +8,7 @@
 # source: https://github.com/uagdataanalysis/mosynapi
 #
 # @author: asaelt
+
 from mosyn import AnalysisManager
 from mosyn import AnalysisProcess
 from mosyn import MorphologicalAnalysis
