@@ -19,6 +19,7 @@ Additional information about the creation of the morphological dictionary can be
 The following packages are required to install mosyn
  - Python: [https://www.python.org/](https://www.python.org/)
  - PyPI: [https://pip.pypa.io/en/stable/installing/](https://pip.pypa.io/en/stable/installing/)
+ - NLTK: [http://www.nltk.org/](http://www.nltk.org/)
 
 Once having installed the depenencies above then install mosyn:
 ```
