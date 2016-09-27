@@ -9,6 +9,9 @@ This API has been created by the Universidad Autónoma de Guadalajara(UAG) Big D
  - Quick overview on what morphological analysis is in the following video: [El análisis morfológico de una oración](https://www.youtube.com/watch?v=BgAHya5ejJ8)
  - Link to EAGLES standard:[INTRODUCCIÓN A LAS ETIQUETAS EAGLES](http://www.cs.upc.edu/~nlp/tools/parole-sp.html) 
 
+Additional information about the creation of the morphological dictionary can be found in the following Article:
+ * Machine Readable Dictionary for Mexican Spanish, Tecnologías Modernas para la Industria y la Educación, ISBN: 978-607-95255-7-6
+
 ----
 
 
@@ -118,9 +121,9 @@ Processing: Poema20.txt.
 ```
 
 ## Contact
-Please address questions to data-analysis-uag@googlegroups.com
+Please address questions to uagdataanalysis@gmail.com
 Report a bug by creating an issue in the following link:
 [https://github.com/uagdataanalysis/mosynapi/issues](https://github.com/uagdataanalysis/mosynapi/issues)
 
 
-<CENTER><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.</CENTER>
+<div style="text-align:center"><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.</CENTER></div>
