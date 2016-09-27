@@ -10,7 +10,7 @@ This API has been created by the Universidad Autónoma de Guadalajara(UAG) Big D
  - Link to EAGLES standard:[INTRODUCCIÓN A LAS ETIQUETAS EAGLES](http://www.cs.upc.edu/~nlp/tools/parole-sp.html) 
 
 Additional information about the creation of the morphological dictionary can be found in the following Article:
- * Machine Readable Dictionary for Mexican Spanish, Tecnologías Modernas para la Industria y la Educación, ISBN: 978-607-95255-7-6
+ * P.J. Castro Pérez, A.A. García Fuentes, M. E. Huerta Arreola, R. Dávila Pérez. (2016). Machine Readable Dictionary for Mexican Spanish. En Tecnologías Modernas para la Industria y la Educación. Cuernavaca, Morelos, Mexico: Institute Eng Electric Electronics Morelos Section, S.C. (607-95255).
 
 ----
 
