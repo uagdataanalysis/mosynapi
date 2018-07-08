@@ -2,7 +2,7 @@
 # -*- coding: iso-8859-15 -*-
 
 # Created on 07/10/2015
-# Modified on 20/10/2015
+# Modified on 07/07/2018
 # Modified by asaelt
 #
 # This class is based on the definition of the Eagles Labeling standard:
@@ -118,7 +118,7 @@ class AbstractMorphology(object):
     '' Public "constants" for Eagles label Degree:
     '''
     __DEGREE_INIT = __TYPE_INIT + 100
-    DEGREE_UKNOWN = __DEGREE_INIT + 1
+    DEGREE_UNKNOWN = __DEGREE_INIT + 1
     DEGREE_APRECIATIVO = __DEGREE_INIT + 2
     # --------------------------------------------------------------------------
 
@@ -257,7 +257,7 @@ class AbstractMorphology(object):
     # --------------------------------------------------------------------------
 
     def __str__(self):
-        return self.__forma + " " + self.__lema + "" + self.__label
+        return self.__form + " " + self.__lema + "" + self.__label
     # --------------------------------------------------------------------------
 
     def get_form(self):
@@ -521,7 +521,7 @@ class AdjectiveMorphology(AbstractMorphology):
         if self.get_eagles_label()[self.__IDX_DEGREE] == 'A':
             return self.DEGREE_APRECIATIVO
         else:
-            return self.DEGREE_UKNOWN
+            return self.DEGREE_UNKNOWN
     # --------------------------------------------------------------------------
 
     def get_gender(self):
@@ -1120,7 +1120,7 @@ class NameMorphology(AbstractMorphology):
         if self.get_eagles_label()[self.__IDX_DEGREE] == 'A':
             return self.DEGREE_APRECIATIVO
         else:
-            return self.DEGREE_UKNOWN
+            return self.DEGREE_UNKNOWN
     # --------------------------------------------------------------------------
 
 
