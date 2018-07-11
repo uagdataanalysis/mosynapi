@@ -26,7 +26,7 @@ import mosyn
 from mosyn.util import AbstractMorphology
 
 
-def analyse():
+def analyze():
     """Use Mosyn API to perform the morphosyntactic analysis on a text written in Spanish 
     which is contained in a plain text file.
     
@@ -128,4 +128,4 @@ def get_category_name( eagles ):
         return "unknown"
 
 if __name__ == '__main__':
-    analyse()
+    analyze()

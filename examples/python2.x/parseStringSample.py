@@ -21,7 +21,7 @@ used in this example.
 import mosyn
 from mosyn.util import AbstractMorphology
 
-def analyse():
+def analyze():
     """Use Mosyn API to perform the morphosyntactic analysis on a text written in Spanish 
     which is contained in a string.
     
@@ -31,9 +31,9 @@ def analyse():
     dictionary.load()
     manager = mosyn.AnalysisManager(dictionary)
     
-    processed_data = manager.parse_string_to_eagles( u"PUEDO escribir los versos más tristes esta noche." )
+    processed_data = manager.parse_string_to_eagles( u"PUEDO escribir los versos mï¿½s tristes esta noche." )
     
-    print "Processing: PUEDO escribir los versos más tristes esta noche."
+    print "Processing: PUEDO escribir los versos mï¿½s tristes esta noche."
     print "............................................................."
     #
     # Below, each one of the eagles labels are processed. There is an element
@@ -127,4 +127,4 @@ def get_category_name( eagles ):
 
 
 if __name__ == '__main__':
-    analyse()
+    analyze()
