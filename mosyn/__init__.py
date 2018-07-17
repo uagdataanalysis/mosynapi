@@ -14,3 +14,5 @@ from mosyn import AnalysisProcess
 from mosyn import MorphologicalAnalysis
 from mosyn import MorphologicalDictionary
 from util import AbstractMorphology
+
+name = "mosyn"
