@@ -1,17 +1,22 @@
-from setuptools import setup, find_packages
-from setuptools.command.install import install as _install
+import setuptools
+from setuptools.command.install import install
 
 
-class Install(_install):
+class PostInstall(install):
     def run(self):
-        _install.do_egg_install(self)
+        install.run(self)
         import nltk
         nltk.download("punkt")
 
-setup(
+setuptools.setup(
     name = 'mosyn',
-    packages = find_packages(),
-    version = '1.0.6',
+    packages = setuptools.find_packages(),
+    classifiers=(
+        "Programming Language :: Python :: 2",
+        "License :: Creative Commons",
+        "Operating System :: OS Independent"
+    ),
+    version = '1.0.7',
     description = 'A morphological dictionary tool.',
     author = 'uagdataanalysis',
     author_email = 'uagdataanalysis@gmail.com',
@@ -19,7 +24,7 @@ setup(
     download_url = "https://github.com/uagdataanalysis/mosynapi/tarball/1.0.6",
     package_data = {'mosyn': ['dict/*.csv']},
     keywords = ['dictionary' , 'morphological', 'analysis'],
-    cmdclass = {'install': Install},
+    cmdclass = {'install': PostInstall},
     install_requires = [
         'nltk>=3.0'
     ]
