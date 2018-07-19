@@ -13,7 +13,7 @@ setuptools.setup(
     packages = setuptools.find_packages(),
     classifiers=(
         "Programming Language :: Python :: 2",
-        "License :: Creative Commons",
+        "License :: Other/Proprietary License",
         "Operating System :: OS Independent"
     ),
     version = '1.0.7',
