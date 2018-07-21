@@ -16,7 +16,7 @@ with open(path.join(here, 'README.md'), encoding='utf-8') as f:
 
 setuptools.setup(
     name = 'mosyn',
-    version = '1.0.8',
+    version = '1.0.9',
     description = 'A morphological dictionary tool.',
     long_description=long_description,
     author = 'uagdataanalysis',
@@ -39,7 +39,7 @@ setuptools.setup(
         "Operating System :: OS Independent"
     ),
     url = 'https://github.com/uagdataanalysis/mosynapi',
-    download_url = "https://github.com/uagdataanalysis/mosynapi/tarball/1.0.8",
+    download_url = "https://github.com/uagdataanalysis/mosynapi/tarball/1.0.9",
     project_urls={
         'Bug Reports': 'https://github.com/uagdataanalysis/mosynapi/issues',
         'Source': 'https://github.com/uagdataanalysis/mosynapi/'
