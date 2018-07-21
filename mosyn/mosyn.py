@@ -22,7 +22,7 @@ from util.io import SystemInput
 from util.io import SystemOutput
 from util.events import EventHook
 
-__version__ = '1.0.6'
+__version__ = '1.0.8'
 
 
 class MorphologicalAnalysis:
