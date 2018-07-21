@@ -27,6 +27,11 @@ setuptools.setup(
     install_requires = [
         'nltk>=3.0'
     ],
+    entry_points={
+        'console_scripts': [
+            'mosyn=mosyn:main',
+        ],
+    },
     keywords = ['dictionary' , 'morphological', 'analysis'],
     classifiers=(
         "Programming Language :: Python :: 2",
