@@ -22,8 +22,6 @@ from util.io import SystemInput
 from util.io import SystemOutput
 from util.events import EventHook
 
-__version__ = '1.0.8'
-
 
 class MorphologicalAnalysis:
     """ Provides methods to perform a morphological analysis to a text entry.
@@ -307,7 +305,7 @@ def are_valid_parameters():
 def show_help():
     """ Shows the available options.
     """
-    print('-------------- MoSyn Ver.'+__version__+' --------------')
+    print('-------------- MoSyn by GITL --------------')
     print('Usage:')
     print('  mosyn [options]\n')
     print('General Options:')
