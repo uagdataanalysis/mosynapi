@@ -16,11 +16,11 @@ import nltk
 import codecs
 import os.path as path
 
-from util.io import FileInput
-from util.io import FileOutput
-from util.io import SystemInput
-from util.io import SystemOutput
-from util.events import EventHook
+from .util.io import FileInput
+from .util.io import FileOutput
+from .util.io import SystemInput
+from .util.io import SystemOutput
+from .util.events import EventHook
 
 
 class MorphologicalAnalysis:
@@ -117,7 +117,7 @@ class AnalysisManager:
         provided to the application.
         """
         eaglesLabels = []
-        from util import eagles
+        from .util import eagles
         
         for data in self.analysis.analyze_text(value):
             form = data[0]
@@ -150,7 +150,7 @@ class AnalysisManager:
         """
         input_file = FileInput(filename)
         eagles_labels = []
-        from util import eagles
+        from .util import eagles
         
         with input_file:
             for data in input_file.read():
@@ -366,7 +366,7 @@ def main(argv):
             else:
                 sys.exit(1)  # If we detect an error then exit
         except Exception as e:
-            print(e.message)
+            print(e)
 
 if __name__ == "__main__":  # The Application starts here.
     main(sys.argv)

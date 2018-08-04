@@ -62,7 +62,7 @@ class FileInput(Input):
     def __init__(self, filename):
         """ Initializes a new instance of FileInput.
         """
-        super(Input, self).__init__()
+        super().__init__()
         self.filename = filename
 
     def __enter__(self):
@@ -86,7 +86,7 @@ class FileOutput(Output):
     def __init__(self, filename):
         """ Initializes a new instance of FileOutput.
         """
-        super(Output, self).__init__()
+        super().__init__()
         self.filename = filename
         self.output_template = u' |{0[0]}|{0[1]}|'
 
@@ -110,14 +110,14 @@ class SystemInput(Input):
     def __init__(self):
         """ Initializes a new instance of SystemInput.
         """
-        super(Input, self).__init__()
+        super().__init__()
 
     def read(self):
         """ Read a value from the standard input.
         :return: An iterable collection of text lines read from the standard input.
         """
         
-        yield raw_input( "% " )
+        yield input( "% " )
 
 
 class SystemOutput(Output):
@@ -126,7 +126,7 @@ class SystemOutput(Output):
     def __init__(self):
         """ Initializes a new instance of SystemOutput.
         """
-        super(Output, self).__init__()
+        super().__init__()
         self.output_template = u' |{0[0]}|{0[1]}|'
 
     def write(self, value):

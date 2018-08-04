@@ -11,7 +11,7 @@
 
 import sys
 
-from mosyn import main
+from .mosyn import main
 
 
 main(sys.argv)

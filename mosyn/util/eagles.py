@@ -310,7 +310,6 @@ class AbstractMorphology(object):
     
     
     
-    
     def get_type(self):
         """
         ' Returns the type of the word based on the Eagles label; e.g.:
@@ -322,7 +321,6 @@ class AbstractMorphology(object):
         """
         return self.TYPE_UNKNOWN
     #--------------------------------------------------------------------------
-    
     
     
     
@@ -340,7 +338,6 @@ class AbstractMorphology(object):
     
     
     
-    
     def get_gender(self):
         """
         ' Returns the Gender of the word based on the Eagles label; e.g.:
@@ -352,7 +349,6 @@ class AbstractMorphology(object):
         """
         return self.GENDER_UNKNOWN
     #--------------------------------------------------------------------------
-    
     
     
     
@@ -370,7 +366,6 @@ class AbstractMorphology(object):
     
     
     
-    
     def get_case(self):
         """
         ' Returns the Case of the word based on the Eagles label; e.g.:
@@ -382,7 +377,6 @@ class AbstractMorphology(object):
         """
         return self.CASE_UNKNOWN
     #--------------------------------------------------------------------------
-    
     
     
     
@@ -400,7 +394,98 @@ class AbstractMorphology(object):
     
     
     
-    
+    def get_function(self):
+        """
+        ' Returns the Function of the word based on the Eagles label; e.g.:
+        '    Eagles Label: <Pending>
+        '    Category:     <Pending>
+        '
+        ' If the category cannot be determined then FUNCTION_UNKNOWN is returned.
+        ' return Integer
+        """
+        return self.FUNCTION_UNKNOWN
+    #--------------------------------------------------------------------------
+
+
+
+    def get_person(self):
+        """
+        ' Returns the Person of the word based on the Eagles label; e.g.:
+        '    Eagles Label: <Pending>
+        '    Category:     <Pending>
+        '
+        ' If the category cannot be determined then FUNCTION_UNKNOWN is returned.
+        ' return Integer
+        """
+        return self.PERSON_UNKNOWN
+
+
+
+    def get_holder(self):
+        """
+        ' Returns the Holder of the word based on the Eagles label; e.g.:
+        '    Eagles Label: <Pending>
+        '    Category:     <Pending>
+        '
+        ' If the category cannot be determined then FUNCTION_UNKNOWN is returned.
+        ' return Integer
+        """
+        return self.HOLDER_UNKNOWN
+
+
+
+    def get_semantic_gender(self):
+        """
+        ' Returns the Semantic Gender of the word based on the Eagles label; e.g.:
+        '    Eagles Label: <Pending>
+        '    Category:     <Pending>
+        '
+        ' If the category cannot be determined then FUNCTION_UNKNOWN is returned.
+        ' return Integer
+        """
+        return self.SEMANTIC_GENDER_UNKNOWN
+
+
+
+    def get_mode(self):
+        """
+        ' Returns the Mode of the word based on the Eagles label; e.g.:
+        '    Eagles Label: <Pending>
+        '    Category:     <Pending>
+        '
+        ' If the category cannot be determined then FUNCTION_UNKNOWN is returned.
+        ' return Integer
+        """
+        return self.MODE_UNKNOWN
+
+
+
+    def get_time(self):
+        """
+        ' Returns the Time of the word based on the Eagles label; e.g.:
+        '    Eagles Label: <Pending>
+        '    Category:     <Pending>
+        '
+        ' If the category cannot be determined then FUNCTION_UNKNOWN is returned.
+        ' return Integer
+        """
+        return self.TIME_UNKNOWN
+
+
+
+    def get_politeness(self):
+        """
+        ' Returns the Politeness of the word based on the Eagles label; e.g.:
+        '    Eagles Label: <Pending>
+        '    Category:     <Pending>
+        '
+        ' If the category cannot be determined then FUNCTION_UNKNOWN is returned.
+        ' return Integer
+        """
+        return self.POLITENESS_UKNOWN
+
+
+
     def get_rol(self):
         """
         ' Returns the type of the word based on the Eagles label; e.g.:

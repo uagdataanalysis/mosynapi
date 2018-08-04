@@ -9,4 +9,8 @@
 #
 # @author: asaelt
 
-from eagles import AbstractMorphology
+# from . import eagles
+# from . import events
+# from . import format
+# from . import io
+# from . import labels

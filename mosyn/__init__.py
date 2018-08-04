@@ -9,10 +9,10 @@
 #
 # @author: asaelt
 
-from mosyn import AnalysisManager
-from mosyn import AnalysisProcess
-from mosyn import MorphologicalAnalysis
-from mosyn import MorphologicalDictionary
-from util import AbstractMorphology
+# from .util.eagles import AnalysisManager
+# from .util.eagles import AnalysisProcess
+# from .util.eagles import MorphologicalAnalysis
+# from .util.eagles import MorphologicalDictionary
+# from .util.eagles import AbstractMorphology
 
 name = "mosyn"
